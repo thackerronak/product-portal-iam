@@ -21,15 +21,10 @@ on:
     runs-on: ubuntu-latest
     # rely on the first job
     env:
-      CONTAINER_REGISTRY: catenaxacr.azurecr.io
-      IMPORT_IMAGE: catenaxacr.azurecr.io/import:latest
+      CONTAINER_REGISTRY: cxtsiacr.azurecr.io
+      IMPORT_IMAGE: cxtsiacr.azurecr.io/iam-import:latest
  
     steps:
-      # This is needed to interact with the subscription
-      - name: Login via Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{secrets.AZURE_CREDENTIALS}}
 
       # Get the latest sources
       - name: Checkout
