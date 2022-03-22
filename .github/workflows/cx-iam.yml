@@ -10,6 +10,7 @@ on:
       # keycloak-themes
       - 'keycloak-themes/**'
 
+#TODO: Comment in, as soon as it works in hotel budapest
 #    branches:
       # Integration environment
 #      - main
