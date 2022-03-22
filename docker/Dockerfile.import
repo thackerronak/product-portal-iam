@@ -2,5 +2,5 @@ FROM busybox
 
 RUN mkdir import
 
-COPY ["themes", "import"]
+COPY ["keycloak-themes", "import"]
 
