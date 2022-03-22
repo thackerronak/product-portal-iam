@@ -4,7 +4,7 @@ on:
   push:
     paths:
       # this workflow file
-      - '.github/workflows/iam.yml'
+      - '.github/workflows/cx-iam.yml'
       # Docker files
       - 'docker/Dockerfile.import'
       # keycloak-themes
