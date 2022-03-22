@@ -18,7 +18,7 @@ jobs:
   build:
     # name of the job starts with a "run-level" subordinate to the workflow such that we can
     # depend on them in order to implement workflow dependencies
-    name: 90 import image build
+    name: 90 iam-import image built
     runs-on: ubuntu-latest
     # rely on the first job
     env:
