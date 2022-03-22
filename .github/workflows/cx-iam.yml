@@ -10,9 +10,9 @@ on:
       # keycloak-themes
       - 'keycloak-themes/**'
 
-    branches:
+#    branches:
       # Integration environment
-      - main
+#      - main
 
 jobs:
   build:
