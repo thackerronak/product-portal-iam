@@ -296,6 +296,10 @@ extraEnvVars:
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
     value: "iam-postgresql-primary"
+  - name: CACHE_OWNERS_COUNT
+    value: "3"
+  - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    value: "3"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -758,7 +762,7 @@ serviceAccount:
 rbac:
   ## @param rbac.create Whether to create and use RBAC resources or not
   ##
-  create: false
+  create: true
   ## @param rbac.rules Custom RBAC rules
   ## Example:
   ## rules:
@@ -770,7 +774,14 @@ rbac:
   ##       - get
   ##       - list
   ##
-  rules: []
+  rules:
+    - apiGroups:
+        - ""
+      resources:
+        - pods
+      verbs:
+        - get
+        - list
 
 ## @section Other parameters
 ##

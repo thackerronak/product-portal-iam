@@ -1,0 +1,47 @@
+name: IAM
+
+on: 
+  push:
+    paths:
+      # this workflow file
+      - '.github/workflows/iam.yml'
+      # Docker files
+      - 'docker/Dockerfile.import'
+      # keycloak-themes
+      - 'keycloak-themes/**'
+
+    branches:
+      # Integration environment
+      - main
+
+  build:
+    # name of the job starts with a "run-level" subordinate to the workflow such that we can
+    # depend on them in order to implement workflow dependencies
+    name: 90 import image build
+    runs-on: ubuntu-latest
+    # rely on the first job
+    env:
+      CONTAINER_REGISTRY: catenaxacr.azurecr.io
+      IMPORT_IMAGE: catenaxacr.azurecr.io/import:latest
+ 
+    steps:
+      # This is needed to interact with the subscription
+      - name: Login via Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+
+      # Get the latest sources
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Build and push KeyCloak custom images for central and shared idp instances
+      - name: 'Build and push KeyCloak images'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{env.CONTAINER_REGISTRY}}
+          username: ${{secrets.AZURE_REGISTRY_USERNAME}}
+          password: ${{secrets.AZURE_REGISTRY_PASSWORD}}
+      - run: |      
+          docker build -f ./docker/Dockerfile.import -t ${{env.IMPORT_IMAGE}} .
+          docker push ${{env.IMPORT_IMAGE}}
