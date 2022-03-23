@@ -83,7 +83,8 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  pullSecrets: []
+  pullSecrets: 
+    - iam-storage-secret
   ## Set to true if you would like to see extra information on logs
   ##
   debug: false
@@ -265,11 +266,11 @@ extraStartupArgs: ""
 ##      echo "Do something."
 ##
 ## TODO: Remove when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
-initdbScripts:
-  my_init_script.sh: |
+#initdbScripts:
+#  my_init_script.sh: |
     #!/bin/bash
-    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
-    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
+#    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
+#    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
 initdbScriptsConfigMap: ""
@@ -403,7 +404,7 @@ startupProbe:
 
 customLivenessProbe:
   httpGet:           
-    path: /helmidp/auth/
+    path: /sharedidp/auth/
     port: http
   initialDelaySeconds: 300
   periodSeconds: 1
@@ -416,7 +417,7 @@ customLivenessProbe:
 
 customReadinessProbe:
   httpGet:           
-    path: /helmidp/auth/realms/master
+    path: /sharedidp/auth/realms/master
     port: http
   initialDelaySeconds: 120
   periodSeconds: 10
@@ -429,7 +430,7 @@ customReadinessProbe:
 
 customStartupProbe:
   httpGet:           
-    path: /helmidp/auth/
+    path: /sharedidp/auth/
     port: http
   initialDelaySeconds: 120
   periodSeconds: 5
@@ -538,7 +539,7 @@ extraVolumeMounts:
 ##
 initContainers:
   - name: import
-    image: catenaxacr.azurecr.io/import:latest
+    image: cxtsiacr.azurecr.io/iam-import:latest
     imagePullPolicy: Always
     command:
       - sh
@@ -638,7 +639,7 @@ ingress:
   hostname: catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com
   ## @param ingress.path Default path for the ingress record
   ##
-  path: /helmidp/auth(/|$)(.*)
+  path: /sharedidp/auth(/|$)(.*)
   ## @param ingress.servicePort Backend service port to use
   ## Default is http. Alternative is https.
   ##
@@ -905,8 +906,8 @@ keycloakConfigCli:
     ## pullSecrets:
     ##   - myRegistryKeySecretName
     ##
-    pullSecrets: 
-      - iam-storage-secret
+    pullSecrets: []
+
   ## @param keycloakConfigCli.annotations [object] Annotations for keycloak-config-cli job
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
   ##
