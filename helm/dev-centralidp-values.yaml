@@ -85,8 +85,9 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  pullSecrets:
-    - centralidp
+  ## TODO: Configure Secret Name for Docker Registry in case of it being in a different account
+  ## pullSecrets:
+  ##  - centralidp
   ## Set to true if you would like to see extra information on logs
   ##
   debug: false
@@ -214,7 +215,7 @@ proxyAddressForwarding: true
 serviceDiscovery:
   ## @param serviceDiscovery.enabled Enable Service Discovery for Keycloak (required if `replicaCount` > `1`)
   ##
-  enabled: true
+  enabled: false
   ## @param serviceDiscovery.protocol Sets the protocol that Keycloak nodes would use to discover new peers
   ## Available protocols can be found at http://www.jgroups.org/javadoc3/org/jgroups/protocols/
   ##
@@ -288,17 +289,18 @@ args: []
 ##   - name: FOO
 ##     value: "bar"
 ##
-#KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
+## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
+##
 extraEnvVars:
   - name: KEYCLOAK_USER
     value: "user"
   - name: KEYCLOAK_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: iam-keycloak
+        name: centralidp-keycloak
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
-    value: "iam-postgresql-primary"
+    value: "sharedidp-postgresql-primary"
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
@@ -314,7 +316,7 @@ extraEnvVarsSecret: ""
 
 ## @param replicaCount Number of Keycloak replicas to deploy
 ##
-replicaCount: 3
+replicaCount: 1
 ## @param containerPorts.http Keycloak HTTP container port
 ## @param containerPorts.https Keycloak HTTPS container port
 ## @param containerPorts.management Keycloak management HTTP container port
@@ -361,7 +363,7 @@ resources:
 ## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 livenessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 300
   periodSeconds: 1
   timeoutSeconds: 5
@@ -377,7 +379,7 @@ livenessProbe:
 ## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 readinessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 1
@@ -394,7 +396,7 @@ readinessProbe:
 ## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 startupProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   periodSeconds: 5
   timeoutSeconds: 1
@@ -541,7 +543,7 @@ extraVolumeMounts:
 ##
 initContainers:
   - name: import
-    image: catenaxacr.azurecr.io/import:latest
+    image: cxtsiacr.azurecr.io/iam-import:latest
     imagePullPolicy: Always
     command:
       - sh
@@ -637,8 +639,8 @@ ingress:
   ##
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
-  ##
-  hostname: centralidp.iam-dev.demo.catena-x.net
+  ## TODO: Adapt to suitable subdomain
+  hostname: centralidp.iam.dev.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
   path: /auth(/|$)(.*)
@@ -658,7 +660,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-service
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-    nginx.ingress.kubernetes.io/cors-allow-origin: https://catenax-dev003-app-onboarding.azurewebsites.net, https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com, http://localhost:3000
+    nginx.ingress.kubernetes.io/cors-allow-origin: centralidp.iam.dev.demo.catena-x.net, centralidp.iam.dev.demo.catena-x.net, http://localhost:3000
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
