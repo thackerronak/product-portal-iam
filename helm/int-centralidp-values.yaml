@@ -636,7 +636,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: centralidp.iam-dev.demo.catena-x.net
+  hostname: centralidp.iam.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
   path: /auth(/|$)(.*)
@@ -656,7 +656,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-service
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-    nginx.ingress.kubernetes.io/cors-allow-origin: https://catenax-dev003-app-onboarding.azurewebsites.net, https://catenaxdev003akssrv.germanywestcentral.cloudapp.azure.com, http://localhost:3000
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.iam.demo.catena-x.net, https://centralidp.iam.demo.catena-x.net, http://localhost:3000
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -1016,9 +1016,9 @@ keycloakConfigCli:
 postgresql:
   enabled: true
   auth:
-    username: cidp_keycloak
+    username: bn_keycloak
     password: ""
-    database: centralidp_keycloak
+    database: bitnami_keycloak
     existingSecret: ""
   architecture: replication
 ## External PostgreSQL configuration
