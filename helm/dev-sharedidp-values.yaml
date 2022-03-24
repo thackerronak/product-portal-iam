@@ -361,7 +361,7 @@ resources:
 ## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 livenessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 300
   periodSeconds: 1
   timeoutSeconds: 5
@@ -377,7 +377,7 @@ livenessProbe:
 ## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 readinessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 1
@@ -394,7 +394,7 @@ readinessProbe:
 ## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 startupProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   periodSeconds: 5
   timeoutSeconds: 1
@@ -641,7 +641,7 @@ ingress:
   hostname: sharedidp.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
-  path: /auth(/|$)(.*)
+  path: /
   ## @param ingress.servicePort Backend service port to use
   ## Default is http. Alternative is https.
   ##
