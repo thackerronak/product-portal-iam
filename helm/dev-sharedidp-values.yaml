@@ -298,7 +298,7 @@ extraEnvVars:
         name: sharedidp-keycloak
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
-    value: "product-iam-sharedidp-postgresql-primary"
+    value: "sharedidp-postgresql-primary"
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
