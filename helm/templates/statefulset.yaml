@@ -294,24 +294,24 @@ spec:
           {{- if .Values.startupProbe.enabled }}
           startupProbe: {{- omit .Values.startupProbe "enabled" | toYaml | nindent 12 }}
             httpGet:
-              path: /helmidp/auth/
-              port: 8080
+              path: /auth/
+              port: http
           {{- else if .Values.customStartupProbe }}
           startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.customStartupProbe "context" $) | nindent 12 }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe: {{- omit .Values.livenessProbe "enabled" | toYaml | nindent 12 }}
             httpGet:
-              path: /helmidp/auth/
-              port: 8080
+              path: /auth/
+              port: http
           {{- else if .Values.customLivenessProbe }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.customLivenessProbe "context" $) | nindent 12 }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe: {{- omit .Values.readinessProbe "enabled" | toYaml | nindent 12 }}
             httpGet:
-              path: /helmidp/auth/realms/master
-              port: 8080
+              path: /auth/realms/master
+              port: http
           {{- else if .Values.customReadinessProbe }}
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.customReadinessProbe "context" $) | nindent 12 }}
           {{- end }}
