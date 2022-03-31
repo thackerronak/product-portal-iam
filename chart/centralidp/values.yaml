@@ -17,6 +17,8 @@ global:
   imagePullSecrets: []
   storageClass: ""
 
+
+
 ## @section Common parameters
 ##
 
@@ -83,9 +85,9 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  ## TODO Adapt to stage
-  ## pullSecrets: 
-  ##  - iam-storage-secret
+  ## TODO: Configure Secret Name for Docker Registry in case of it being in a different account
+  ## pullSecrets:
+  ##  - centralidp
   ## Set to true if you would like to see extra information on logs
   ##
   debug: false
@@ -267,11 +269,11 @@ extraStartupArgs: ""
 ##      echo "Do something."
 ##
 ## TODO: Remove when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
-#initdbScripts:
-#  my_init_script.sh: |
-    #!/bin/bash
-#    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
-#    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
+## initdbScripts:
+##  my_init_script.sh: |
+##    #!/bin/bash
+##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
+##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
 initdbScriptsConfigMap: ""
@@ -288,17 +290,17 @@ args: []
 ##     value: "bar"
 ##
 ## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
-## TODO: KEYCLOAK_Password secret ref is always {helmrelease name}-keycloak
+##
 extraEnvVars:
   - name: KEYCLOAK_USER
     value: "user"
   - name: KEYCLOAK_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: sharedidp-keycloak
+        name: centralidp-keycloak
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
-    value: "sharedidp-postgresql-primary"
+    value: "centralidp-postgresql-primary"
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
@@ -406,7 +408,7 @@ startupProbe:
 
 customLivenessProbe:
   httpGet:           
-    path: /auth/
+    path: /auth
     port: http
   initialDelaySeconds: 300
   periodSeconds: 1
@@ -432,7 +434,7 @@ customReadinessProbe:
 
 customStartupProbe:
   httpGet:           
-    path: /auth/
+    path: /auth
     port: http
   initialDelaySeconds: 120
   periodSeconds: 5
@@ -637,11 +639,11 @@ ingress:
   ##
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
-  ##
-  hostname: sharedidp.demo.catena-x.net
+  ## TODO: Adapt to suitable subdomain
+  hostname: centralidp.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
-  path: /
+  path: /auth(/|$)(.*)
   ## @param ingress.servicePort Backend service port to use
   ## Default is http. Alternative is https.
   ##
@@ -658,7 +660,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-    nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.demo.catena-x.net, http://localhost:3000
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.demo.catena-x.net, http://localhost:3000
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
