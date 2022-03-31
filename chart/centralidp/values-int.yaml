@@ -13,7 +13,7 @@ auth:
   ##     tls-keystore-password: myTlsKeystorePasswordKey
   ##     tls-truestore-password: myTlsTruestorePasswordKey
   ##
-  existingSecret: ""
+  existingSecret: "centralidp-keycloak"
 
 ## @param proxyAddressForwarding Enable Proxy Address Forwarding
 ## ref: https://www.keycloak.org/docs/latest/server_installation/#_setting-up-a-load-balancer-or-proxy
@@ -395,7 +395,7 @@ postgresql:
     username: bn_keycloak
     password: ""
     database: bitnami_keycloak
-    existingSecret: ""
+    existingSecret: "centralidp-keycloak"
   architecture: replication
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
