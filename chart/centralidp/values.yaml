@@ -120,7 +120,7 @@ auth:
   ##     tls-keystore-password: myTlsKeystorePasswordKey
   ##     tls-truestore-password: myTlsTruestorePasswordKey
   ##
-  ## existingSecret: ""
+  existingSecret: ""
   ## @param auth.existingSecretPerPassword Override `existingSecret` and other secret values
   ## e.g:
   ## existingSecretPerPassword:
@@ -1023,7 +1023,7 @@ postgresql:
     username: bn_keycloak
     password: ""
     database: bitnami_keycloak
-##    existingSecret: ""
+    existingSecret: ""
   architecture: replication
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
