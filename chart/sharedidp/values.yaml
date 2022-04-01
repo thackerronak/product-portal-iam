@@ -98,7 +98,7 @@ auth:
   createAdminUser: true
   ## @param auth.adminUser Keycloak administrator user
   ##
-  adminUser: user
+  adminUser: admin
   ## @param auth.adminPassword Keycloak administrator password for the new user
   ##
   adminPassword: ""
@@ -291,7 +291,7 @@ args: []
 ## TODO: KEYCLOAK_Password secret ref is always {helmrelease name}-keycloak
 extraEnvVars:
   - name: KEYCLOAK_USER
-    value: "user"
+    value: "admin"
   - name: KEYCLOAK_PASSWORD
     valueFrom:
       secretKeyRef:
