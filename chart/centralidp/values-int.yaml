@@ -15,6 +15,15 @@ auth:
   ##
   existingSecret: "centralidp-keycloak"
 
+  ## @param auth.adminUser Keycloak administrator user
+  ## Passwords are stored in secrets
+  adminUser: user
+
+  ## @param auth.managementUser Wildfly management user
+  ## Passwords are stored in secrets
+  managementUser: manager
+
+
 ## @param proxyAddressForwarding Enable Proxy Address Forwarding
 ## ref: https://www.keycloak.org/docs/latest/server_installation/#_setting-up-a-load-balancer-or-proxy
 ##
@@ -40,7 +49,7 @@ serviceDiscovery:
 ##
 extraEnvVars:
   - name: KEYCLOAK_USER
-    value: "user"
+    value: "admin"
   - name: KEYCLOAK_PASSWORD
     valueFrom:
       secretKeyRef:
