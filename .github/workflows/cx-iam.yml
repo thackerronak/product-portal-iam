@@ -8,12 +8,12 @@ on:
       # Docker files
       - 'docker/Dockerfile.import'
       # keycloak-themes
-      - 'keycloak-themes/**'
+      - 'import/keycloak-themes/**'
 
 #TODO: Comment in, as soon as it works in hotel budapest
-#    branches:
+    branches:
       # Integration environment
-#      - main
+     - main
 
 jobs:
   build:
