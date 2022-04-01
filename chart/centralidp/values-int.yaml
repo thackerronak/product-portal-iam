@@ -13,7 +13,7 @@ auth:
   ##     tls-keystore-password: myTlsKeystorePasswordKey
   ##     tls-truestore-password: myTlsTruestorePasswordKey
   ##
-  ## existingSecret: "centralidp-keycloak"
+  existingSecret: "centralidp-keycloak"
 
   ## @param auth.adminUser Keycloak administrator user
   ## Passwords are stored in secrets
@@ -404,7 +404,7 @@ postgresql:
     username: bn_keycloak
     password: ""
     database: bitnami_keycloak
-    existingSecret: "" ## centralidp-postgresql
+    existingSecret: "centralidp-postgresql"
   architecture: replication
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
