@@ -14,6 +14,7 @@ on:
     branches:
       # Integration environment
      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,21 +24,33 @@ jobs:
     runs-on: ubuntu-latest
     # rely on the first job
     env:
-      CONTAINER_REGISTRY: cxtsiacr.azurecr.io
-      IMPORT_IMAGE: cxtsiacr.azurecr.io/iam-import:latest
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}_iam-import
 
     steps:
       # Get the latest sources
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       # Build and push KeyCloak custom images for central and shared idp instances
       - name: 'Build and push KeyCloak images'
-        uses: azure/docker-login@v1
+        uses: docker/build-push-action@v2
         with:
-          login-server: ${{env.CONTAINER_REGISTRY}}
-          username: ${{secrets.AZURE_REGISTRY_USERNAME}}
-          password: ${{secrets.AZURE_REGISTRY_PASSWORD}}
-      - run: |      
-          docker build -f ./docker/Dockerfile.import -t ${{env.IMPORT_IMAGE}} .
-          docker push ${{env.IMPORT_IMAGE}}
+          context: .
+          file: docker/Dockerfile.import
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          labels: ${{ steps.meta.outputs.labels }}
