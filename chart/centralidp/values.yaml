@@ -120,7 +120,10 @@ auth:
   ##     tls-keystore-password: myTlsKeystorePasswordKey
   ##     tls-truestore-password: myTlsTruestorePasswordKey
   ##
-  existingSecret: ""
+  existingSecret: "centralidp-keycloak"
+  secret:
+    name: "centralidp-keycloak"
+    path: "portal/data/int/iam/centralidp-keycloak"
   ## @param auth.existingSecretPerPassword Override `existingSecret` and other secret values
   ## e.g:
   ## existingSecretPerPassword:
@@ -276,7 +279,7 @@ extraStartupArgs: ""
 ##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
-initdbScriptsConfigMap: ""
+initdbScriptsConfigMap: "p-init-sql"
 ## @param command Override default container command (useful when using custom images)
 ##
 command: []
@@ -592,7 +595,7 @@ service:
   ## Values: ClientIP or None
   ## ref: https://kubernetes.io/docs/user-guide/services/
   ##
-  sessionAffinity: None
+  sessionAffinity: ClientIP
   ## @param service.clusterIP Keycloak service clusterIP IP
   ## e.g:
   ## clusterIP: None
@@ -639,8 +642,7 @@ ingress:
   ##
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
-  ## TODO: Adapt to suitable subdomain
-  hostname: centralidp.demo.catena-x.net
+  hostname: centralidp.int.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
   path: /
@@ -660,7 +662,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-    nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.demo.catena-x.net, http://localhost:3000
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.int.demo.catena-x.net, http://localhost:3000
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -1020,11 +1022,16 @@ keycloakConfigCli:
 postgresql:
   enabled: true
   auth:
-    username: bn_keycloak
-    password: ""
-    database: bitnami_keycloak
-    existingSecret: ""
+    username: kccentral
+    database: iamcentral
+    existingSecret: "centralidp-postgres"
+    secret:
+      name: "centralidp-postgres"
+      path: "portal/data/int/iam/centralidp-postgres"
   architecture: replication
+  # primary:
+  #   initdb:
+  #     scriptsConfigMap: p-init-sql
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
 ## @param externalDatabase.host Database host
