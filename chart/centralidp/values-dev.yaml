@@ -53,5 +53,5 @@ ingress:
 
 postgresql:
   secret:
-    name: "secret-postgres-init"
+    name: "centralidp-postgres"
     path: "portal/data/dev/iam/centralidp-postgres"

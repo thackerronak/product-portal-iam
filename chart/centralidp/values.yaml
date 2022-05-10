@@ -279,7 +279,7 @@ extraStartupArgs: ""
 ##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
-initdbScriptsConfigMap: "p-init-sql"
+initdbScriptsConfigMap: ""
 ## @param command Override default container command (useful when using custom images)
 ##
 command: []
@@ -1029,9 +1029,9 @@ postgresql:
       name: "centralidp-postgres"
       path: "portal/data/int/iam/centralidp-postgres"
   architecture: replication
-  # primary:
-  #   initdb:
-  #     scriptsConfigMap: p-init-sql
+  primary:
+    initdb:
+      scriptsConfigMap: postgres-init-centralidp-sql
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
 ## @param externalDatabase.host Database host
