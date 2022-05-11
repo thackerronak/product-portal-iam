@@ -1,34 +1,3 @@
-## Keycloak authentication parameters
-## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
-##
-auth:
-  secret:
-    path: "portal/data/dev/iam/centralidp-keycloak"
-## @param initContainers Add additional init containers to the Keycloak pods
-## Example:
-## initContainers:
-##   - name: your-image-name
-##     image: your-image
-##     imagePullPolicy: Always
-##     ports:
-##       - name: portname
-##         containerPort: 1234
-##
-initContainers:
-  - name: import
-    image: ghcr.io/catenax-ng/product-portal-iam_iam-import:latest
-    imagePullPolicy: Always
-    command:
-      - sh
-    args:
-      - -c
-      - |
-        echo "Copying themes..."
-        cp -R /import/* /themes
-    volumeMounts:
-    - name: themes
-      mountPath: "/themes"
-
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/
 ##

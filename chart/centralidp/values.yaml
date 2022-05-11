@@ -552,8 +552,8 @@ extraVolumeMounts:
 ##         containerPort: 1234
 ##
 initContainers:
-  - name: import-keycloak-themes
-    image: cxtsiacr.azurecr.io/iam-import:latest
+  - name: import
+    image: ghcr.io/catenax-ng/product-portal-iam_iam-import:latest
     imagePullPolicy: Always
     command:
       - sh
@@ -562,20 +562,11 @@ initContainers:
       - |
         echo "Copying themes..."
         cp -R /import/keycloak-themes/* /themes
-    volumeMounts:
-    - name: themes
-      mountPath: "/themes"
-  - name: import-realms
-    image: ghcr.io/catenax-ng/product-portal-iam_iam-import:latest
-    imagePullPolicy: Always
-    command:
-      - sh
-    args:
-      - -c
-      - |
         echo "Copying realms..."
         cp -R /import/realm-config/* /realms
     volumeMounts:
+    - name: themes
+      mountPath: "/themes"
     - name: realms
       mountPath: "/realms"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
