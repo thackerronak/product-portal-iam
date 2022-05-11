@@ -561,7 +561,8 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/keycloak-themes/* /themes
+        ls /import
+        cp -R /import/* /themes
     volumeMounts:
     - name: themes
       mountPath: "/themes"
