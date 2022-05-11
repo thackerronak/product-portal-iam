@@ -308,6 +308,8 @@ extraEnvVars:
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
+  - name: KEYCLOAK_EXTRA_ARGS
+    value: "-Dkeycloak.import=/config/realm.json"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -529,11 +531,17 @@ updateStrategy:
 extraVolumes:
   - name: themes
     emptyDir: {}
+  - name: config
+    configMap:
+      name: keycloak-realm
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
   - name: themes
     mountPath: "/opt/bitnami/keycloak/themes"
+  - name: config
+    mountPath: "/config"
+    readOnly: true
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
@@ -975,9 +983,7 @@ keycloakConfigCli:
   ##   - name: FOO
   ##     value: "bar"
   ##
-  extraEnvVars:
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.import=/config/realm.json"
+  extraEnvVars: []
   ## @param keycloakConfigCli.extraEnvVarsCM ConfigMap with extra environment variables
   ##
   extraEnvVarsCM: ""
@@ -986,16 +992,10 @@ keycloakConfigCli:
   extraEnvVarsSecret: ""
   ## @param keycloakConfigCli.extraVolumes Extra volumes to add to the job
   ##
-  extraVolumes:
-    - name: config
-      configMap:
-        name: keycloak-realm
+  extraVolumes: []
   ## @param keycloakConfigCli.extraVolumeMounts Extra volume mounts to add to the container
   ##
-  extraVolumeMounts:
-    - name: config
-      mountPath: "/config"
-      readOnly: true
+  extraVolumeMounts: []
   ## @param keycloakConfigCli.configuration keycloak-config-cli realms configuration
   ## NOTE: nil keys will be considered files to import locally
   ## Example:
