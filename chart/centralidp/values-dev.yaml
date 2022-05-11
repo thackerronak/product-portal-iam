@@ -1,3 +1,10 @@
+## Keycloak authentication parameters
+## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
+##
+auth:
+  secret:
+    path: "portal/data/dev/iam/centralidp-keycloak"
+
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/
 ##
