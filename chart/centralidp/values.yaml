@@ -308,8 +308,8 @@ extraEnvVars:
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
-  - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.import=/config/master-central-realm.json,/config/cx-cental-realm.json"
+  # - name: KEYCLOAK_EXTRA_ARGS
+  #   value: "-Dkeycloak.import=/config/master-central-realm.json,/config/cx-cental-realm.json"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -531,16 +531,16 @@ updateStrategy:
 extraVolumes:
   - name: themes
     emptyDir: {}
-  - name: realms
-    emptyDir: {}
+  # - name: realms
+  #   emptyDir: {}
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
   - name: themes
     mountPath: "/opt/bitnami/keycloak/themes"
   - name: realms
-    mountPath: "/realms"
-    readOnly: true
+    # mountPath: "/realms"
+    # readOnly: true
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
@@ -561,14 +561,14 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/keycloak-themes/* /themes
-        echo "Copying realms..."
-        cp -R /import/realm-config/* /realms
+        cp -R /import/* /themes
+        # echo "Copying realms..."
+        # cp -R /import/realm-config/* /realms
     volumeMounts:
     - name: themes
       mountPath: "/themes"
-    - name: realms
-      mountPath: "/realms"
+    # - name: realms
+    #   mountPath: "/realms"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
 ## Example:
 ## sidecars:
