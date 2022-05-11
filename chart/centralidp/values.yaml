@@ -561,12 +561,7 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        ls /import
-        echo "Copying themes...2"
-        ls /import/themes
-        echo "Copying themes...3"
-        ls /import/realms
-        cp -R /import/themes /themes
+        cp -R /import/themes/ /themes
     volumeMounts:
     - name: themes
       mountPath: "/themes"
