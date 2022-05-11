@@ -294,7 +294,20 @@ args: []
 ##
 ## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
 ##
-extraEnvVars: []
+extraEnvVars:
+  - name: KEYCLOAK_USER
+    value: "admin"
+  - name: KEYCLOAK_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: centralidp-keycloak
+        key: admin-password
+  - name: KEYCLOAK_DATABASE_HOST
+    value: "centralidp-postgresql-primary"
+  - name: CACHE_OWNERS_COUNT
+    value: "3"
+  - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    value: "3"
   # - name: KEYCLOAK_EXTRA_ARGS
   #   value: "-Dkeycloak.import=/config/master-central-realm.json,/config/cx-cental-realm.json"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
