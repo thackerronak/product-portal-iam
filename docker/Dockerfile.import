@@ -3,4 +3,4 @@ FROM busybox
 RUN mkdir import
 
 COPY import/keycloak-themes/ import/themes
-COPY import/realm-config/ import/realms/
+COPY import/realm-config/ import/realms
