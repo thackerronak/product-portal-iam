@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: keycloak-realm
-data:
-{{ (.Files.Glob "config/realm/*").AsConfig | indent 2 }}

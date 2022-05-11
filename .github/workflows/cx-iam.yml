@@ -9,6 +9,8 @@ on:
       - 'docker/Dockerfile.import'
       # keycloak-themes
       - 'import/keycloak-themes/**'
+      # keycloak-realms
+      - 'import/realm-config/**'
 
 #TODO: Comment in, as soon as it works in hotel budapest
     branches:

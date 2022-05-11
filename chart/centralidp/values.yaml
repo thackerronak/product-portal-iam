@@ -309,7 +309,7 @@ extraEnvVars:
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.import=/config/realm.json"
+    value: "-Dkeycloak.import=/config/master-central-realm.json,/config/cx-cental-realm.json"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -531,16 +531,15 @@ updateStrategy:
 extraVolumes:
   - name: themes
     emptyDir: {}
-  - name: config
-    configMap:
-      name: keycloak-realm
+  - name: realms
+    emptyDir: {}
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
   - name: themes
     mountPath: "/opt/bitnami/keycloak/themes"
-  - name: config
-    mountPath: "/config"
+  - name: realms
+    mountPath: "/realms"
     readOnly: true
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
@@ -553,7 +552,7 @@ extraVolumeMounts:
 ##         containerPort: 1234
 ##
 initContainers:
-  - name: import
+  - name: import-keycloak-themes
     image: cxtsiacr.azurecr.io/iam-import:latest
     imagePullPolicy: Always
     command:
@@ -562,10 +561,23 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/* /themes
+        cp -R /import/keycloak-themes/* /themes
     volumeMounts:
     - name: themes
       mountPath: "/themes"
+  - name: import-realms
+    image: ghcr.io/catenax-ng/product-portal-iam_iam-import:latest
+    imagePullPolicy: Always
+    command:
+      - sh
+    args:
+      - -c
+      - |
+        echo "Copying realms..."
+        cp -R /import/realm-config/* /realms
+    volumeMounts:
+    - name: realms
+      mountPath: "/realms"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
 ## Example:
 ## sidecars:
