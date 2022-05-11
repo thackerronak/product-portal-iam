@@ -309,7 +309,7 @@ extraEnvVars:
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.import=/realms/master-central-realm.json,/realms/cx-cental-realm.json"
+    value: "-Dkeycloak.import=/realms/master-central-realm.json,/realms/cx-central-realm.json"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
