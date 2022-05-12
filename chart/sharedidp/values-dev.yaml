@@ -3,7 +3,7 @@
 ##
 auth:
   secret:
-    path: "portal/data/dev/iam/centralidp-keycloak"
+    path: "portal/data/dev/iam/sharedidp-keycloak"
 
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/
