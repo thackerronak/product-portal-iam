@@ -1,4 +1,5 @@
-const ASSET_BASE='https://catenaxdev003util.blob.core.windows.net/util/themes/catenax-central/static';
+const ENV = location.hostname.includes('.int.') ? 'int' : 'dev';
+const ASSET_BASE = `https://portal.${ENV}.demo.catena-x.net/assets/themes/centralidp`;
 window.onload = () => {
     let icon = document.querySelectorAll('link[rel=icon]')[0];
     if (!icon) {
