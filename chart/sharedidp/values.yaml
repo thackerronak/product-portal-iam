@@ -571,7 +571,7 @@ initContainers:
         cp -R /import/catenax-shared/realms/* /realms
         echo "Copying realms-secrets..."
         cp -R /secrets/* /realms
-        ls -lisa
+        ls -lisa /realms
     volumeMounts:
     - name: themes
       mountPath: "/themes"
