@@ -309,7 +309,7 @@ extraEnvVars:
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms/secrets"
+    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -532,10 +532,9 @@ extraVolumes:
   - name: themes
     emptyDir: {}
   - name: realms
-    emptyDir: {}
-  - name: realm-secrets
     secret:
       secretName: secret-centralidp-users
+      defaultMode: 0400
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
@@ -543,8 +542,6 @@ extraVolumeMounts:
     mountPath: "/opt/bitnami/keycloak/themes"
   - name: realms
     mountPath: "/realms"
-  - name: realm-secrets
-    mountPath: "/realms/secrets"
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
