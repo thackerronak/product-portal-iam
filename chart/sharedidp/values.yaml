@@ -570,7 +570,7 @@ initContainers:
         echo "Copying realms..."
         cp -R /import/catenax-shared/realms/* /realms
         echo "Copying realms-secrets..."
-        cp -R /secrets/* /realms
+        cp /secrets/* /realms
         echo "Realm..."
         ls -lisa /realms
         echo "Secret..."
