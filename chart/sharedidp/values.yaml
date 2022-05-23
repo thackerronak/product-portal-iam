@@ -574,6 +574,8 @@ initContainers:
       mountPath: "/themes"
     - name: realms
       mountPath: "/realms"
+    - name: realm-secrets
+      mountPath: "/realms/secrets"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
 ## Example:
 ## sidecars:
