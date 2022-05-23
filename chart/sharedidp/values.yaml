@@ -309,7 +309,7 @@ extraEnvVars:
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
+    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms,/realms/secrets -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
