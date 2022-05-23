@@ -541,6 +541,7 @@ extraVolumeMounts:
     mountPath: "/opt/bitnami/keycloak/themes"
   - name: realms
     mountPath: "/realms"
+    readOnly: false
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
