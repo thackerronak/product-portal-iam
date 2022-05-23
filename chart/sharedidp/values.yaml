@@ -533,10 +533,10 @@ extraVolumes:
     emptyDir: {}
   - name: realms
     emptyDir: {}
-    defaultMode: 0700
   - name: realm-secrets
     secret:
       secretName: secret-sharedidp-users
+      defaultMode: 0700
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
