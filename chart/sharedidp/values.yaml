@@ -533,6 +533,7 @@ extraVolumes:
     emptyDir: {}
   - name: realms
     emptyDir: {}
+    defaultMode: 0700
   - name: realm-secrets
     secret:
       secretName: secret-sharedidp-users
