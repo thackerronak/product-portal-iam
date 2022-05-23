@@ -309,7 +309,7 @@ extraEnvVars:
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.import=/realms/master-shared-realm.json,/realms/cx-test-access-shared-realm.json"
+    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -563,7 +563,7 @@ initContainers:
         echo "Copying themes..."
         cp -R /import/themes/* /themes
         echo "Copying realms..."
-        cp -R /import/realms/* /realms
+        cp -R /import/catenax-shared/realms/* /realms
     volumeMounts:
     - name: themes
       mountPath: "/themes"

@@ -17,6 +17,7 @@ on:
       # Integration environment
      - main
      - feature/CPLP-768_keycloak-backend-frontend-integration
+     - feature/CPLP-973-integrate-kc-exports
   workflow_dispatch:
 
 jobs:
