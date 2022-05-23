@@ -412,7 +412,7 @@ startupProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 customLivenessProbe:
-  httpGet:           
+  httpGet:
     path: /auth
     port: http
   initialDelaySeconds: 300
@@ -425,7 +425,7 @@ customLivenessProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 customReadinessProbe:
-  httpGet:           
+  httpGet:
     path: /auth/realms/master
     port: http
   initialDelaySeconds: 120
@@ -438,7 +438,7 @@ customReadinessProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 customStartupProbe:
-  httpGet:           
+  httpGet:
     path: /auth
     port: http
   initialDelaySeconds: 120
@@ -532,7 +532,8 @@ extraVolumes:
   - name: themes
     emptyDir: {}
   - name: realms
-    emptyDir: {}
+    secret:
+      secretName: secret-centralidp-users
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:

@@ -4,6 +4,8 @@
 auth:
   secret:
     path: "portal/data/dev/iam/sharedidp-keycloak"
+  secret2:
+    path: "portal/data/dev/iam/cx-test-access-users"
 
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/
