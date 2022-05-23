@@ -532,6 +532,8 @@ extraVolumes:
   - name: themes
     emptyDir: {}
   - name: realms
+    emptyDir: {}
+  - name: realm-secrets
     secret:
       secretName: secret-centralidp-users
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
@@ -541,7 +543,8 @@ extraVolumeMounts:
     mountPath: "/opt/bitnami/keycloak/themes"
   - name: realms
     mountPath: "/realms"
-    readOnly: false
+  - name: realm-secrets
+    mountPath: "/realms/secrets"
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
