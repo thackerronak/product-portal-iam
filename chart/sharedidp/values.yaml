@@ -535,7 +535,7 @@ extraVolumes:
     emptyDir: {}
   - name: realm-secrets
     secret:
-      secretName: secret-centralidp-users
+      secretName: secret-sharedidp-users
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
@@ -544,7 +544,7 @@ extraVolumeMounts:
   - name: realms
     mountPath: "/realms"
   - name: realm-secrets
-    mountPath: "/realms/secrets"
+    mountPath: "/secrets"
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
@@ -568,14 +568,15 @@ initContainers:
         cp -R /import/themes/* /themes
         echo "Copying realms..."
         cp -R /import/catenax-shared/realms/* /realms
-        cp -R /realms/secrets/* /realms
+        echo "Copying realms-secrets..."
+        cp -R /secrets/* /realms
     volumeMounts:
     - name: themes
       mountPath: "/themes"
     - name: realms
       mountPath: "/realms"
     - name: realm-secrets
-      mountPath: "/realms/secrets"
+      mountPath: "/secrets"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
 ## Example:
 ## sidecars:
