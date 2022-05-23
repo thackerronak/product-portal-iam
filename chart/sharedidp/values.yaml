@@ -534,7 +534,7 @@ extraVolumes:
   - name: realms
     secret:
       secretName: secret-centralidp-users
-      defaultMode: 0400
+      defaultMode: 0777
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
