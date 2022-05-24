@@ -1,0 +1,37 @@
+## Keycloak authentication parameters
+## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
+##
+auth:
+  secret:
+    path: "portal/data/dev/iam/sharedidp-keycloak"
+  secret2:
+    path: "portal/data/dev/iam/cx-test-access-users"
+  secret3:
+    path: "portal/data/dev/iam/sharedidp-service-accounts"
+
+## Keycloak ingress parameters
+## ref: https://kubernetes.io/docs/user-guide/ingress/
+##
+ingress:
+  ## @param ingress.hostname Default host for the ingress record
+  hostname: sharedidp.dev.demo.catena-x.net
+  ## annotations:
+  ##   kubernetes.io/ingress.class: nginx
+  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
+  ##
+  annotations:
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.dev.demo.catena-x.net, http://localhost:3000
+
+## PostgreSQL chart configuration
+## ref: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+## @param postgresql.enabled Switch to enable or disable the PostgreSQL helm chart
+## @param postgresql.auth.username Name for a custom user to create
+## @param postgresql.auth.password Password for the custom user to create
+## @param postgresql.auth.database Name for a custom database to create
+## @param postgresql.auth.existingSecret Name of existing secret to use for PostgreSQL credentials
+## @param postgresql.architecture PostgreSQL architecture (`standalone` or `replication`)
+
+postgresql:
+  secret:
+    name: "sharedidp-postgres"
+    path: "portal/data/dev/iam/sharedidp-postgres"
