@@ -310,6 +310,11 @@ extraEnvVars:
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
     value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
+  - name: SA_CENTRAL_IDP
+    valueFrom:
+      secretKeyRef:
+        name: sharedidp-service-accounts
+        key: central-idp-client-secret
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
