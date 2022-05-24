@@ -1680,7 +1680,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "${SA_CENTRAL_IDP}",
+      "secret": "${SA_CL1_REG_1}",
       "redirectUris": [
         "*"
       ],
