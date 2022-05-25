@@ -17,6 +17,8 @@ global:
   imagePullSecrets: []
   storageClass: ""
 
+
+
 ## @section Common parameters
 ##
 
@@ -70,7 +72,7 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/keycloak
-  tag: 18.0.0-debian-10-r3
+  tag: 16.1.1-debian-10-r50
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -83,7 +85,9 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  pullSecrets: []
+  ## TODO: Configure Secret Name for Docker Registry in case of it being in a different account
+  ## pullSecrets:
+  ##  - sharedidp
   ## Set to true if you would like to see extra information on logs
   ##
   debug: false
@@ -118,6 +122,7 @@ auth:
   ##
   existingSecret: "sharedidp-keycloak"
   secret:
+    name: "sharedidp-keycloak"
     path: "portal/data/int/iam/sharedidp-keycloak"
   ## @param auth.existingSecretPerPassword Override `existingSecret` and other secret values
   ## e.g:
@@ -203,17 +208,46 @@ auth:
       ##    memory: 128Mi
       ##
       requests: {}
-## @param proxy reverse Proxy mode edge, reencrypt, passthrough or none
-## ref: https://www.keycloak.org/server/reverseproxy
+## @param proxyAddressForwarding Enable Proxy Address Forwarding
+## ref: https://www.keycloak.org/docs/latest/server_installation/#_setting-up-a-load-balancer-or-proxy
 ##
-proxy: passthrough
+proxyAddressForwarding: true
 ## Keycloak Service Discovery settings
 ## ref: https://github.com/bitnami/bitnami-docker-keycloak#cluster-configuration
 ##
+serviceDiscovery:
+  ## @param serviceDiscovery.enabled Enable Service Discovery for Keycloak (required if `replicaCount` > `1`)
+  ##
+  enabled: true
+  ## @param serviceDiscovery.protocol Sets the protocol that Keycloak nodes would use to discover new peers
+  ## Available protocols can be found at http://www.jgroups.org/javadoc3/org/jgroups/protocols/
+  ##
+  protocol: kubernetes.KUBE_PING
+  ## @param serviceDiscovery.properties Properties for the discovery protocol set in `serviceDiscovery.protocol` parameter
+  ## List of key=>value pairs
+  ## Example:
+  ## properties:
+  ##   - datasource_jndi_name=>"java:jboss/datasources/KeycloakDS"
+  ##   - initialize_sql=>"CREATE TABLE IF NOT EXISTS JGROUPSPING ( own_addr varchar(200) NOT NULL, cluster_name varchar(200) NOT NULL, created timestamp default current_timestamp, ping_data BYTEA, constraint PK_JGROUPSPING PRIMARY KEY (own_addr, cluster_name))"
+  ##
+  properties: []
+  ## @param serviceDiscovery.transportStack Transport stack for the discovery protocol set in `serviceDiscovery.protocol` parameter
+  ##
+  transportStack: tcp
+## Keycloak cache settings
+## ref: https://github.com/bitnami/bitnami-docker-keycloak#cluster-configuration
+##
+cache:
+  ## @param cache.ownersCount Number of nodes that will replicate cached data
+  ##
+  ownersCount: 1
+  ## @param cache.authOwnersCount Number of nodes that will replicate cached authentication data
+  ##
+  authOwnersCount: 1
 ## @param configuration Keycloak Configuration. Auto-generated based on other parameters when not specified
-## Specify content for keycloak.conf
+## Specify content for standalone-ha.xml
 ## NOTE: This will override configuring Keycloak based on environment variables (including those set by the chart)
-## The keycloak.conf is auto-generated based on other parameters when this parameter is not specified
+## The standalone-ha.xml is auto-generated based on other parameters when this parameter is not specified
 ##
 ## Example:
 ## configuration: |-
@@ -237,7 +271,12 @@ extraStartupArgs: ""
 ##      #!/bin/bash
 ##      echo "Do something."
 ##
-initdbScripts: {}
+## TODO: Remove when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+## initdbScripts:
+##  my_init_script.sh: |
+##    #!/bin/bash
+##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
+##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
 initdbScriptsConfigMap: ""
@@ -254,6 +293,7 @@ args: []
 ##     value: "bar"
 ##
 ## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
+##
 extraEnvVars:
   - name: KEYCLOAK_USER
     value: "admin"
@@ -281,7 +321,7 @@ extraEnvVarsSecret: "sharedidp-service-accounts"
 
 ## @param replicaCount Number of Keycloak replicas to deploy
 ##
-replicaCount: 1
+replicaCount: 3
 ## @param containerPorts.http Keycloak HTTP container port
 ## @param containerPorts.https Keycloak HTTPS container port
 ## @param containerPorts.management Keycloak management HTTP container port
@@ -325,6 +365,8 @@ resources:
 ## @param livenessProbe.failureThreshold Failure threshold for livenessProbe
 ## @param livenessProbe.successThreshold Success threshold for livenessProbe
 ##
+## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+
 livenessProbe:
   enabled: true
   initialDelaySeconds: 300
@@ -339,6 +381,8 @@ livenessProbe:
 ## @param readinessProbe.failureThreshold Failure threshold for readinessProbe
 ## @param readinessProbe.successThreshold Success threshold for readinessProbe
 ##
+## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+
 readinessProbe:
   enabled: true
   initialDelaySeconds: 30
@@ -354,8 +398,10 @@ readinessProbe:
 ## @param startupProbe.failureThreshold Failure threshold for startupProbe
 ## @param startupProbe.successThreshold Success threshold for startupProbe
 ##
+## TODO: Set to true and remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+
 startupProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   periodSeconds: 5
   timeoutSeconds: 1
@@ -364,6 +410,7 @@ startupProbe:
 ## @param customLivenessProbe Custom Liveness probes for Keycloak
 ##
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+
 customLivenessProbe:
   httpGet:
     path: /auth
@@ -375,7 +422,8 @@ customLivenessProbe:
   successThreshold: 1
 ## @param customReadinessProbe Custom Rediness probes Keycloak
 ##
-# TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+
 customReadinessProbe:
   httpGet:
     path: /auth/realms/master
@@ -388,6 +436,7 @@ customReadinessProbe:
 ## @param customStartupProbe Custom Startup probes for Keycloak
 ##
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
+
 customStartupProbe:
   httpGet:
     path: /auth
@@ -487,6 +536,7 @@ extraVolumes:
   - name: realm-secrets
     secret:
       secretName: secret-sharedidp-users
+      defaultMode: 0700
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
@@ -620,7 +670,6 @@ ingress:
   ##
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
-  ##
   hostname: sharedidp.int.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
@@ -651,8 +700,8 @@ ingress:
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
   ## You can:
   ##   - Use the `ingress.secrets` parameter to create this TLS secret
-  ##   - Rely on cert-manager to create it by setting the corresponding annotations
-  ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
+  ##   - Relay on cert-manager to create it by setting the corresponding annotations
+  ##   - Relay on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
   ##
   tls: true
   ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
@@ -697,20 +746,6 @@ ingress:
   ##   certificate:
   ##
   secrets: []
-  ## @param ingress.extraRules Additional rules to be covered with this ingress record
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-rules
-  ## e.g:
-  ## extraRules:
-  ## - host: airflow.local
-  ##     http:
-  ##       path: /
-  ##       backend: 
-  ##         service:
-  ##           name: airflow-svc
-  ##           port:
-  ##             name: http
-  ##
-  extraRules: []
 
 ## Network Policy configuration
 ## ref: https://kubernetes.io/docs/concepts/services-networking/network-policies/
@@ -892,7 +927,7 @@ keycloakConfigCli:
   image:
     registry: docker.io
     repository: bitnami/keycloak-config-cli
-    tag: 5.2.0-debian-10-r11
+    tag: 4.8.1-debian-10-r6
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
     ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -906,6 +941,7 @@ keycloakConfigCli:
     ##   - myRegistryKeySecretName
     ##
     pullSecrets: []
+
   ## @param keycloakConfigCli.annotations [object] Annotations for keycloak-config-cli job
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
   ##
@@ -1018,8 +1054,12 @@ postgresql:
     database: iamshared
     existingSecret: "sharedidp-postgres"
     secret:
+      name: "sharedidp-postgres"
       path: "portal/data/int/iam/sharedidp-postgres"
   architecture: replication
+  primary:
+    initdb:
+      scriptsConfigMap: postgres-init-sharedidp-sql
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
 ## @param externalDatabase.host Database host
