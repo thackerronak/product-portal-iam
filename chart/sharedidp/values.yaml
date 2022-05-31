@@ -203,7 +203,6 @@ auth:
       ##    memory: 128Mi
       ##
       requests: {}
-proxyAddressForwarding: true
 ## @param proxy reverse Proxy mode edge, reencrypt, passthrough or none
 ## ref: https://www.keycloak.org/server/reverseproxy
 ##
@@ -265,10 +264,6 @@ extraEnvVars:
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
     value: sharedidp-postgresql-primary
-  - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
-    value: "true"
-  - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.frontendUrl=https://sharedidp.dev.demo.catena-x.net/auth"
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
