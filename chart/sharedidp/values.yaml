@@ -269,7 +269,7 @@ extraEnvVars:
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
-    value: "start --import-realm"
+    value: "bin/kc.sh start --import-realm"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
