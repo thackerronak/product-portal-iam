@@ -262,12 +262,12 @@ extraEnvVars:
       secretKeyRef:
         name: sharedidp-keycloak
         key: admin-password
+  - name: KEYCLOAK_DATABASE_HOST
+    value: sharedidp-postgresql-primary
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
     value: "true"
   - name: KEYCLOAK_FRONTEND_URL
-    value: "https://sharedidp.dev.demo.catena-x.net/auth"
-  - name: KEYCLOAK_DATABASE_HOST
-    value: sharedidp-postgresql-primary
+    value: "https://sharedidp.dev.demo.catena-x.net"
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
