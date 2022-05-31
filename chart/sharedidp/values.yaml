@@ -203,6 +203,7 @@ auth:
       ##    memory: 128Mi
       ##
       requests: {}
+proxyAddressForwarding: true
 ## @param proxy reverse Proxy mode edge, reencrypt, passthrough or none
 ## ref: https://www.keycloak.org/server/reverseproxy
 ##
