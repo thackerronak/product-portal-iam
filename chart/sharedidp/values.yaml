@@ -262,6 +262,8 @@ extraEnvVars:
       secretKeyRef:
         name: sharedidp-keycloak
         key: admin-password
+  - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
+    value: "true"
   - name: KEYCLOAK_DATABASE_HOST
     value: sharedidp-postgresql-primary
   - name: CACHE_OWNERS_COUNT
