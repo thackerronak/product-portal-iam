@@ -268,8 +268,6 @@ extraEnvVars:
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
-  - name: KEYCLOAK_EXTRA_ARGS
-    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -493,7 +491,7 @@ extraVolumeMounts:
   - name: themes
     mountPath: "/opt/bitnami/keycloak/themes"
   - name: realms
-    mountPath: "/realms"
+    mountPath: "/data/import"
   - name: realm-secrets
     mountPath: "/secrets"
 ## @param initContainers Add additional init containers to the Keycloak pods
@@ -518,22 +516,16 @@ initContainers:
         echo "Copying themes..."
         cp -R /import/themes/* /themes
         echo "Copying realms..."
-        cp -R /import/catenax-shared/realms/* /realms
+        cp -R /import/catenax-shared/realms/* /data/import
         echo "Copying realms-secrets..."
-        cp /secrets/* /realms
-        echo "Realm..."
-        ls -lisa /realms
-        echo "Secret..."
-        ls -lisa /secrets
-        echo "cat Realm secret..."
-        cat /realms/CX-Test-Access-users-0.json
-        echo "cat Secret..."
-        cat /secrets/CX-Test-Access-users-0.json
+        cp /secrets/* /data/import
+        echo "Realm data import..."
+        ls -lisa /data/import
     volumeMounts:
     - name: themes
       mountPath: "/themes"
     - name: realms
-      mountPath: "/realms"
+      mountPath: "/data/import"
     - name: realm-secrets
       mountPath: "/secrets"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
