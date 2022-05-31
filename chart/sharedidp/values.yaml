@@ -267,8 +267,8 @@ extraEnvVars:
     value: sharedidp-postgresql-primary
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
     value: "true"
-  - name: KEYCLOAK_FRONTEND_URL
-    value: "https://sharedidp.dev.demo.catena-x.net"
+  - name: KEYCLOAK_EXTRA_ARGS
+    value: "-Dkeycloak.frontendUrl=https://sharedidp.dev.demo.catena-x.net/auth"
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
