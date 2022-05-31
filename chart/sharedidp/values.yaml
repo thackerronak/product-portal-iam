@@ -619,7 +619,7 @@ ingress:
   hostname: sharedidp.int.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
-  path: /auth
+  path: /
   ## @param ingress.servicePort Backend service port to use
   ## Default is http. Alternative is https.
   ##
