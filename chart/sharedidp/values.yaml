@@ -526,6 +526,8 @@ initContainers:
         cp /secrets/* /data/import
         echo "Realm data import..."
         ls -lisa /data/import
+        echo "import realms..."
+        /opt/bitnami/keycloak/bin/kc.sh import --dir /data/import
     volumeMounts:
     - name: themes
       mountPath: "/themes"
