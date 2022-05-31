@@ -227,7 +227,7 @@ configuration: ""
 existingConfigmap: ""
 ## @param extraStartupArgs Extra default startup args
 ##
-extraStartupArgs: ""
+extraStartupArgs: "/opt/bitnami/keycloak/bin/kc.sh import --dir /data/import"
 ## @param initdbScripts Dictionary of initdb scripts
 ## Specify dictionary of scripts to be run at first boot
 ## ref: https://github.com/bitnami/bitnami-docker-keycloak#initializing-a-new-instance
