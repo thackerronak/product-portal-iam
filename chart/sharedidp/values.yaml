@@ -264,8 +264,6 @@ extraEnvVars:
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
     value: sharedidp-postgresql-primary
-  - name: KEYCLOAK_FRONTEND_URL
-    value: https://sharedidp.int.demo.catena-x.net/auth
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT

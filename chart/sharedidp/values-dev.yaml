@@ -9,17 +9,6 @@ auth:
   secret3:
     path: "portal/data/dev/iam/sharedidp-service-accounts"
 
-## @param extraEnvVars Extra environment variables to be set on Keycloak container
-## Example:
-## extraEnvVars:
-##   - name: FOO
-##     value: "bar"
-##
-## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
-extraEnvVars:
-  - name: KEYCLOAK_FRONTEND_URL
-    value: https://sharedidp.dev.demo.catena-x.net/auth
-
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/
 ##
