@@ -528,6 +528,10 @@ initContainers:
         ls -lisa /data/import
         echo "import realms..."
         /bin/kc.sh import --dir /data/import
+        echo "ls.."
+        ls -lisa
+        echo "ls kc bin.."
+        ls -lisa /opt/bitnami/keycloak/bin
     volumeMounts:
     - name: themes
       mountPath: "/themes"
