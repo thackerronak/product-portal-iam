@@ -616,7 +616,7 @@ ingress:
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: sharedidp.int.demo.catena-x.net
+  hostname: sharedidp.int.demo.catena-x.net/auth
   ## @param ingress.path Default path for the ingress record
   ##
   path: /

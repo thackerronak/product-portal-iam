@@ -14,7 +14,7 @@ auth:
 ##
 ingress:
   ## @param ingress.hostname Default host for the ingress record
-  hostname: sharedidp.dev.demo.catena-x.net
+  hostname: sharedidp.dev.demo.catena-x.net/auth
   ## annotations:
   ##   kubernetes.io/ingress.class: nginx
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
