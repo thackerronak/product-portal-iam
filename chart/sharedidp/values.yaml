@@ -279,7 +279,7 @@ extraEnvVarsSecret: "sharedidp-service-accounts"
 
 ## @param replicaCount Number of Keycloak replicas to deploy
 ##
-replicaCount: 3
+replicaCount: 1
 ## @param containerPorts.http Keycloak HTTP container port
 ## @param containerPorts.https Keycloak HTTPS container port
 ## @param containerPorts.management Keycloak management HTTP container port
