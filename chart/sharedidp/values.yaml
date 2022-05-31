@@ -367,7 +367,7 @@ startupProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 customLivenessProbe:
   httpGet:
-    path: /auth
+    path: /
     port: http
   initialDelaySeconds: 300
   periodSeconds: 1
@@ -379,7 +379,7 @@ customLivenessProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 customReadinessProbe:
   httpGet:
-    path: /auth/realms/master
+    path: /realms/master
     port: http
   initialDelaySeconds: 120
   periodSeconds: 10
@@ -391,7 +391,7 @@ customReadinessProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 customStartupProbe:
   httpGet:
-    path: /auth
+    path: /
     port: http
   initialDelaySeconds: 120
   periodSeconds: 5
