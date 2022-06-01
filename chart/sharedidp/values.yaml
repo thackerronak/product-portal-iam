@@ -17,6 +17,8 @@ global:
   imagePullSecrets: []
   storageClass: ""
 
+
+
 ## @section Common parameters
 ##
 
@@ -83,11 +85,6 @@ image:
   ## pullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  ## TODO Adapt to stage
-  ## pullSecrets: 
-  ##  - iam-storage-secret
-  ## Set to true if you would like to see extra information on logs
-  ##
   debug: false
 ## Keycloak authentication parameters
 ## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
@@ -118,7 +115,8 @@ auth:
   ##     tls-keystore-password: myTlsKeystorePasswordKey
   ##     tls-truestore-password: myTlsTruestorePasswordKey
   ##
-  existingSecret: ""
+  existingSecret: sharedidp-keycloak
+  existingSecretPath: "portal/data/int/iam/sharedidp-keycloak"
   ## @param auth.existingSecretPerPassword Override `existingSecret` and other secret values
   ## e.g:
   ## existingSecretPerPassword:
@@ -267,11 +265,11 @@ extraStartupArgs: ""
 ##      echo "Do something."
 ##
 ## TODO: Remove when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
-#initdbScripts:
-#  my_init_script.sh: |
-    #!/bin/bash
-#    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
-#    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
+## initdbScripts:
+##  my_init_script.sh: |
+##    #!/bin/bash
+##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone.xml
+##    sed -i -e 's/<web-context>auth<\/web-context>/<web-context>helmidp\/auth<\/web-context>/' /opt/bitnami/keycloak/standalone/configuration/standalone-ha.xml
 ## @param initdbScriptsConfigMap ConfigMap with the initdb scripts (Note: Overrides `initdbScripts`)
 ##
 initdbScriptsConfigMap: ""
@@ -288,7 +286,7 @@ args: []
 ##     value: "bar"
 ##
 ## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
-## TODO: KEYCLOAK_Password secret ref is always {helmrelease name}-keycloak
+##
 extraEnvVars:
   - name: KEYCLOAK_USER
     value: "admin"
@@ -298,11 +296,13 @@ extraEnvVars:
         name: sharedidp-keycloak
         key: admin-password
   - name: KEYCLOAK_DATABASE_HOST
-    value: "sharedidp-postgresql-primary"
+    value: sharedidp-postgresql-primary
   - name: CACHE_OWNERS_COUNT
     value: "3"
   - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
     value: "3"
+  - name: KEYCLOAK_EXTRA_ARGS
+    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
@@ -405,8 +405,8 @@ startupProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 customLivenessProbe:
-  httpGet:           
-    path: /auth/
+  httpGet:
+    path: /auth
     port: http
   initialDelaySeconds: 300
   periodSeconds: 1
@@ -418,7 +418,7 @@ customLivenessProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 customReadinessProbe:
-  httpGet:           
+  httpGet:
     path: /auth/realms/master
     port: http
   initialDelaySeconds: 120
@@ -431,8 +431,8 @@ customReadinessProbe:
 ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 
 customStartupProbe:
-  httpGet:           
-    path: /auth/
+  httpGet:
+    path: /auth
     port: http
   initialDelaySeconds: 120
   periodSeconds: 5
@@ -524,11 +524,22 @@ updateStrategy:
 extraVolumes:
   - name: themes
     emptyDir: {}
+  - name: realms
+    emptyDir: {}
+  - name: realm-secrets
+    secret:
+      secretName: secret-sharedidp-realms
+extraVolumeSecret:
+extraVolumeSecretPath: portal/data/int/iam/sharedidp-realms
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Keycloak container(s)
 ##
 extraVolumeMounts:
   - name: themes
     mountPath: "/opt/bitnami/keycloak/themes"
+  - name: realms
+    mountPath: "/realms"
+  - name: realm-secrets
+    mountPath: "/secrets"
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
@@ -541,7 +552,7 @@ extraVolumeMounts:
 ##
 initContainers:
   - name: import
-    image: cxtsiacr.azurecr.io/iam-import:latest
+    image: ghcr.io/catenax-ng/product-portal-iam_iam-import-int:latest
     imagePullPolicy: Always
     command:
       - sh
@@ -549,10 +560,18 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/* /themes
+        cp -R /import/themes/* /themes
+        echo "Copying realms..."
+        cp -R /import/catenax-shared/realms/* /realms
+        echo "Copying realms-secrets..."
+        cp /secrets/* /realms
     volumeMounts:
     - name: themes
       mountPath: "/themes"
+    - name: realms
+      mountPath: "/realms"
+    - name: realm-secrets
+      mountPath: "/secrets"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
 ## Example:
 ## sidecars:
@@ -590,7 +609,7 @@ service:
   ## Values: ClientIP or None
   ## ref: https://kubernetes.io/docs/user-guide/services/
   ##
-  sessionAffinity: None
+  sessionAffinity: ClientIP
   ## @param service.clusterIP Keycloak service clusterIP IP
   ## e.g:
   ## clusterIP: None
@@ -637,8 +656,7 @@ ingress:
   ##
   apiVersion: ""
   ## @param ingress.hostname Default host for the ingress record
-  ##
-  hostname: sharedidp.demo.catena-x.net
+  hostname: sharedidp.int.demo.catena-x.net
   ## @param ingress.path Default path for the ingress record
   ##
   path: /
@@ -658,7 +676,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-    nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.demo.catena-x.net, http://localhost:3000
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.int.demo.catena-x.net, http://localhost:3000
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -1018,10 +1036,11 @@ keycloakConfigCli:
 postgresql:
   enabled: true
   auth:
-    username: bn_keycloak
-    password: ""
-    database: bitnami_keycloak
-    existingSecret: ""
+    username: kcshared
+    database: iamsharedidp
+    existingSecret: sharedidp-postgres
+    secret:
+      path: portal/data/int/iam/sharedidp-postgres
   architecture: replication
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false

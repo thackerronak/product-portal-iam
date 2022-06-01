@@ -1,6 +1,0 @@
-FROM busybox
-
-RUN mkdir import
-
-COPY ["import/*", "import/"]
-
