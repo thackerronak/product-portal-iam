@@ -459,8 +459,8 @@
         },
         {
           "id": "d9cdf5af-47c4-46c7-b4ab-dddd4b4a4aa0",
-          "name": "Data Specialist (INT only)",
-          "description": "Only a INT user with extended rights",
+          "name": "Data Specialist (DEV only)",
+          "description": "Only a DEV user with extended rights",
           "composite": true,
           "composites": {
             "client": {
@@ -522,8 +522,8 @@
                 "view_user_account",
                 "filter_apps",
                 "setup_idp",
-                "view_client_roles",
                 "delete_tech_user_management",
+                "view_client_roles",
                 "my_user_account",
                 "edit_apps",
                 "view_apps",
@@ -1133,7 +1133,7 @@
         }
       ],
       "sa-cl5-custodian-1": [],
-      "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com": [],
+      "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com": [],
       "Cl4-CX-DigitalTwin": [
         {
           "id": "6188b8f4-5d2c-41c7-a841-83fb8328f1ba",
@@ -1723,8 +1723,8 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/CX-Central/account/*",
-        "https://centralidp.int.demo.catena-x.net/*"
+        "https://centralidp.dev.demo.catena-x.net/*",
+        "/realms/CX-Central/account/*"
       ],
       "webOrigins": [
         "+"
@@ -2130,8 +2130,8 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "http://localhost:3000/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://portal.dev.demo.catena-x.net/*",
+        "http://localhost:3000/*"
       ],
       "webOrigins": [
         "+"
@@ -2236,17 +2236,17 @@
       "clientId": "Cl2-CX-Portal",
       "name": "",
       "description": "",
-      "rootUrl": "https://portal.int.demo.catena-x.net/home",
+      "rootUrl": "https://portal.dev.demo.catena-x.net/home",
       "adminUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
+        "https://portal.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
         "http://localhost:3000/*",
-        "https://catenax-bpdm-int.demo.catena-x.net/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://catenax-bpdm-dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -2334,7 +2334,7 @@
       "id": "36e2745d-f331-4fa5-bbfa-90947d7f1dc4",
       "clientId": "Cl3-CX-Semantic",
       "rootUrl": "",
-      "adminUrl": "https://portal.int.demo.catena-x.net/home",
+      "adminUrl": "https://portal.dev.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -2342,7 +2342,7 @@
       "redirectUris": [
         "http://localhost:8080/*",
         "http://localhost:3000/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://portal.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -2430,16 +2430,16 @@
       "id": "0dec1120-c21e-42ad-a779-94fc36217072",
       "clientId": "Cl4-CX-DigitalTwin",
       "rootUrl": "",
-      "adminUrl": "https://portal.int.demo.catena-x.net/home",
+      "adminUrl": "https://portal.dev.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
+        "https://portal.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
-        "https://semantics.int.demo.catena-x.net/*",
-        "http://localhost:3000/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://semantics.dev.demo.catena-x.net/*",
+        "http://localhost:3000/*"
       ],
       "webOrigins": [
         "+"
@@ -2526,14 +2526,14 @@
     {
       "id": "e6ab12bb-3b26-472c-ad0b-3d871bd1461b",
       "clientId": "Cl5-CX-Custodian",
-      "name": "Cl5-CX-Custodian INT",
+      "name": "Cl5-CX-Custodian DEV",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://managed-identity-wallets.int.demo.catena-x.net/*"
+        "https://managed-identity-wallets.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -2635,7 +2635,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://catenax-bpdm-int.demo.catena-x.net/*"
+        "https://catenax-bpdm-dev.demo.catena-x.net/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -2962,16 +2962,16 @@
     },
     {
       "id": "6a9209c2-ec16-476b-9a9f-61474610b790",
-      "clientId": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
+      "clientId": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10"
+        "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10"
       ],
       "webOrigins": [
-        "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com"
+        "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -2986,14 +2986,14 @@
       "attributes": {
         "saml.assertion.signature": "true",
         "saml.force.post.binding": "true",
-        "saml_single_logout_service_url_post": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_single_logout_service_url_post": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10",
         "saml.encrypt": "true",
-        "saml_assertion_consumer_url_post": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_assertion_consumer_url_post": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10",
         "saml.server.signature": "true",
         "saml.server.signature.keyinfo.ext": "false",
         "saml.signing.certificate": "MIIDQjCCAiqgAwIBAgIGElXjqKNAMA0GCSqGSIb3DQEBCwUAMFgxVjBUBgNVBAMMTWh0dHBzOi8vY2F0ZW5heC1pbnQtZGlzbWFudGxlci1zNjZwZnRjYy5hdXRoZW50aWNhdGlvbi5ldTEwLmhhbmEub25kZW1hbmQuY29tMCAXDTE2MDEwMTAwMDAwMFoYDzIwNTAwMTAxMDAwMDAwWjBYMVYwVAYDVQQDDE1odHRwczovL2NhdGVuYXgtaW50LWRpc21hbnRsZXItczY2cGZ0Y2MuYXV0aGVudGljYXRpb24uZXUxMC5oYW5hLm9uZGVtYW5kLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKVD5SYVIsC3M8PqMuiw/IMypyZU0V5pUwxBaZlMWljz1D1iNPGaOg9LhhLGAWOD0cdfFs70Q4Ov391raGRn5/9cQma0dJtH1PiTMM67+FZFvn1FWeEJ5a3qwIgoQrcDZn9NDTmtL+yaYOAsg5SGEkjrOZlJp1U3xVZDmuToUZ96WDodsy/nVQTkvaORSh+XDPIQ3sH5jqFdFuQsWf3xXSFHobF1sbi2IjGSZxLEi9yszPVff999Q0Q86kAoCh5gVKdB3WSHgkzDD6gxlcIGGQM6y3HZigIKlPRwK1o3SrEvl0IbPKDNM6rtFgWwRfp5KsQLRfe7TxLq7IWkqQd29vcCAwEAAaMQMA4wDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQsFAAOCAQEAoScTGCrzKq4bbYFTJcyKwtgL80OM7RgZlfSsP/+k7fiZKUaY6WbUKDwRl7yHglgjL6NiC/Tz1PklgbB08RMwXIHbnG4VvdpcMUlHn5wGfZnNViHZYsjb4TgK8QS/zD8CSaJguUuK0ym/KUT9Hn6bHQuk4CQICVZmlp1N/bIWoSinY565rZ1amg9Ap0sgy1wWuqH8zKeTClrxjbuQeRTyj7d4kb/Ocg12rrUP8dznS5SGiR7WL9LpVrJZH72cKuOM1dYV6O94KH9uiuMe+VoUxWqgHiYbA/LOCxLSgI2fVTG8cGz0bCviFSf2tfVEB8mi/cU2Ikz6LzGNdaEpr4NoaA==",
         "saml.artifact.binding.identifier": "ZGMZhC4yxOKbOI3azIQQxCjXbLw=",
-        "saml_single_logout_service_url_redirect": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_single_logout_service_url_redirect": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10",
         "saml.signature.algorithm": "RSA_SHA256",
         "saml_force_name_id_format": "false",
         "saml.client.signature": "true",
@@ -3995,7 +3995,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://catenaxintakssrv.germanywestcentral.cloudapp.azure.com/*",
+        "https://centralidp.dev.demo.catena-x.net/*",
         "http://localhost"
       ],
       "webOrigins": [],
@@ -4815,6 +4815,7 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientId",
+            "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientId",
@@ -4829,6 +4830,7 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientAddress",
+            "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientAddress",
@@ -4843,6 +4845,7 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientHost",
+            "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientHost",
@@ -5767,36 +5770,6 @@
   "adminEventsDetailsEnabled": true,
   "identityProviders": [
     {
-      "alias": "bmw-wen-oidc",
-      "displayName": "BMW (INT)",
-      "internalId": "d06619f8-7ec3-4b7e-a94e-d148afbacfd1",
-      "providerId": "oidc",
-      "enabled": true,
-      "updateProfileFirstLoginMode": "on",
-      "trustEmail": false,
-      "storeToken": false,
-      "addReadTokenRoleOnCreate": false,
-      "authenticateByDefault": false,
-      "linkOnly": false,
-      "firstBrokerLoginFlowAlias": "first broker login",
-      "config": {
-        "validateSignature": "true",
-        "userInfoUrl": "https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/userinfo",
-        "tokenUrl": "https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/access_token",
-        "clientId": "96947c40-cf96-415f-8f54-d83bed2a9816",
-        "jwksUrl": "https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/connect/jwk_uri",
-        "backchannelSupported": "false",
-        "useJwksUrl": "true",
-        "authorizationUrl": "https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/authorize",
-        "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://auth-i.bmwgroup.com/auth/oauth2/realms/root/realms/internetb2xmfaonly/connect/endSession",
-        "syncMode": "FORCE",
-        "clientSecret": "**********",
-        "guiOrder": "120",
-        "defaultScope": "openid email profile organization"
-      }
-    },
-    {
       "alias": "idp18",
       "displayName": "OpenResearch",
       "internalId": "3c44698c-ace2-430e-9ed9-b5723bccae52",
@@ -5821,63 +5794,6 @@
         "clientAssertionSigningAlg": "RS256",
         "syncMode": "FORCE",
         "useJwksUrl": "true"
-      }
-    },
-    {
-      "alias": "siemensidpauth0",
-      "displayName": "Siemens",
-      "internalId": "95f74fcf-83c4-4485-b9d0-e187df602dfc",
-      "providerId": "oidc",
-      "enabled": true,
-      "updateProfileFirstLoginMode": "on",
-      "trustEmail": false,
-      "storeToken": false,
-      "addReadTokenRoleOnCreate": false,
-      "authenticateByDefault": false,
-      "linkOnly": false,
-      "firstBrokerLoginFlowAlias": "first broker login",
-      "config": {
-        "userInfoUrl": "https://siemens-df-005.eu.auth0.com/userinfo",
-        "validateSignature": "true",
-        "clientId": "PMS2BvjBRM05yjIKHCtmI7vofbzCjj0Y",
-        "tokenUrl": "https://siemens-df-005.eu.auth0.com/oauth/token",
-        "jwksUrl": "https://siemens-df-005.eu.auth0.com/.well-known/jwks.json",
-        "issuer": "https://siemens-df-005.eu.auth0.com/",
-        "useJwksUrl": "true",
-        "authorizationUrl": "https://siemens-df-005.eu.auth0.com/authorize",
-        "clientAuthMethod": "client_secret_basic",
-        "syncMode": "FORCE",
-        "clientSecret": "**********",
-        "guiOrder": "150"
-      }
-    },
-    {
-      "alias": "sap-oidc",
-      "displayName": "SAP",
-      "internalId": "a8d31df9-1645-4355-83e2-a87815eca562",
-      "providerId": "oidc",
-      "enabled": true,
-      "updateProfileFirstLoginMode": "on",
-      "trustEmail": false,
-      "storeToken": false,
-      "addReadTokenRoleOnCreate": false,
-      "authenticateByDefault": false,
-      "linkOnly": false,
-      "firstBrokerLoginFlowAlias": "first broker login",
-      "config": {
-        "validateSignature": "true",
-        "userInfoUrl": "https://au6f1kxob.accounts.ondemand.com/oauth2/userinfo",
-        "tokenUrl": "https://au6f1kxob.accounts.ondemand.com/oauth2/token",
-        "clientId": "28b00530-a876-40e0-94a9-e04c1dd7bb14",
-        "jwksUrl": "https://au6f1kxob.accounts.ondemand.com/oauth2/certs",
-        "issuer": "https://au6f1kxob.accounts.ondemand.com",
-        "useJwksUrl": "true",
-        "authorizationUrl": "https://au6f1kxob.accounts.ondemand.com/oauth2/authorize",
-        "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://au6f1kxob.accounts.ondemand.com/oauth2/logout",
-        "syncMode": "FORCE",
-        "clientSecret": "**********",
-        "guiOrder": "140"
       }
     },
     {
@@ -5987,196 +5903,11 @@
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
-    },
-    {
-      "alias": "Mercedes-Benz",
-      "displayName": "Mercedes-Benz",
-      "internalId": "43d0c957-0273-46c1-bf37-031e9b25047d",
-      "providerId": "oidc",
-      "enabled": true,
-      "updateProfileFirstLoginMode": "on",
-      "trustEmail": false,
-      "storeToken": false,
-      "addReadTokenRoleOnCreate": false,
-      "authenticateByDefault": false,
-      "linkOnly": false,
-      "firstBrokerLoginFlowAlias": "Login without auto user creation",
-      "config": {
-        "validateSignature": "true",
-        "userInfoUrl": "https://sso-int.daimler.com/idp/userinfo.openid",
-        "tokenUrl": "https://sso-int.daimler.com/as/token.oauth2",
-        "clientId": "165177be-c24c-4c1a-997e-bae0df1cca74",
-        "jwksUrl": "https://sso-int.daimler.com/pf/JWKS",
-        "issuer": "https://sso-int.daimler.com",
-        "useJwksUrl": "true",
-        "authorizationUrl": "https://sso-int.daimler.com/as/authorization.oauth2",
-        "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sso-int.daimler.com/idp/startSLO.ping",
-        "syncMode": "IMPORT",
-        "clientSecret": "**********",
-        "guiOrder": "130"
-      }
     }
   ],
   "identityProviderMappers": [
     {
-      "id": "da1dd22a-7d1d-4d88-aa6e-64d5087161a4",
-      "name": "tenant-mapper",
-      "identityProviderAlias": "CX-Test-Access",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "CX-Test-New",
-        "attribute": "tenant"
-      }
-    },
-    {
-      "id": "be411a52-4b7f-4d1b-ba5f-56e7ce87231c",
-      "name": "username-mapper",
-      "identityProviderAlias": "Company-1",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "6e8e0338-880e-444e-8819-1d23c3656663",
-      "name": "tenant-mapper",
-      "identityProviderAlias": "Company-3",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "company-3",
-        "attribute": "tenant"
-      }
-    },
-    {
-      "id": "98b274c1-dd1e-4bac-82b1-1b6b28a752a5",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "idp18",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "75e7cf55-3a1f-499b-9525-3c3c921522c8",
-      "name": "username mapper",
-      "identityProviderAlias": "Company-3",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "4b857696-00fd-4ac1-b036-6735a7cb950c",
-      "name": "username-mapper",
-      "identityProviderAlias": "Mercedes-Benz",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "71b45fcc-bd40-4365-884e-b94aebec228f",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "Company-3",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "company-3",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "18feed35-af52-441f-a59a-82a33b583411",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "sap-oidc",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "claims": "[]",
-        "attribute.value": "SAP",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "4840ae51-f121-49cb-ba35-490ebd46ac10",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "Company-1",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "company-1",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "f612da86-43e4-4aa1-a197-5a8db1814108",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "bmw-wen-oidc",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "BMW",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "8430ce5a-8f61-466e-a5a0-3b47af53a26e",
-      "name": "username-mapper",
-      "identityProviderAlias": "idp18",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "74471b8e-7b52-4977-8f52-6d388697c417",
-      "name": "username mapper",
-      "identityProviderAlias": "bmw-wen-oidc",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "ef7ccd65-e94f-4677-a805-e78e80b4cda3",
-      "name": "username mapper",
-      "identityProviderAlias": "siemensidpauth0",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "claims": "[]",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "939857c9-18d0-4b74-b964-5bfc9a8e9f04",
-      "name": "idp mapper",
-      "identityProviderAlias": "bmw-wen-oidc",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "claims": "[]",
-        "attribute.value": "bmw-wen-oidc",
-        "attribute": "tenant"
-      }
-    },
-    {
-      "id": "55a09803-a20a-4100-bf23-1240bae3dd33",
+      "id": "f6b7914c-f8d5-4e38-9013-ee4c1935a7b5",
       "name": "username-mapper",
       "identityProviderAlias": "Company-2",
       "identityProviderMapper": "oidc-username-idp-mapper",
@@ -6187,7 +5918,29 @@
       }
     },
     {
-      "id": "b2c4b4bc-7230-498a-818a-3fbf734906a4",
+      "id": "bcc31049-f00e-4c37-922c-94d93e8fa1b9",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "Company-3",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "attribute.value": "company-3",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "732972bd-5b9b-4dd9-a929-90a32871da04",
+      "name": "username mapper",
+      "identityProviderAlias": "CX-Test-Access",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "syncMode": "INHERIT",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "9f5f8ea3-68fd-42c4-87e2-bd819e772f39",
       "name": "organisation-mapper",
       "identityProviderAlias": "Company-2",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -6198,63 +5951,7 @@
       }
     },
     {
-      "id": "c15df945-a2a0-4c76-9790-b2aad53b1b95",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "CX-Test-Access",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "CX-Test-Access",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "c4bde4d2-4b06-49d6-bb44-0e15d26ba6a2",
-      "name": "username mapper",
-      "identityProviderAlias": "sap-oidc",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "42a3dc7b-d3b1-4ef4-8237-51b0f94aff18",
-      "name": "username mapper",
-      "identityProviderAlias": "CX-Test-Access",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "syncMode": "INHERIT",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "20bc217e-9f07-4e4c-bb85-e8415a7598ff",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "siemensidpauth0",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "attribute.value": "Siemens",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "e17097aa-e5c0-472f-af21-35674f7fd697",
-      "name": "idp mapper",
-      "identityProviderAlias": "siemensidpauth0",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "claims": "[]",
-        "attribute.value": "siemensidpauth0",
-        "attribute": "tenant"
-      }
-    },
-    {
-      "id": "736f3769-1f63-4ffa-ad90-d89ef342a8d3",
+      "id": "3ba992b6-87e7-44f8-9531-0c9d64e54954",
       "name": "tenant-mapper",
       "identityProviderAlias": "idp18",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -6265,7 +5962,61 @@
       }
     },
     {
-      "id": "7ed00ebd-e4b6-412c-a67f-a9ef12101e42",
+      "id": "f799a7ef-7ff4-49f7-bfd8-896971d0e310",
+      "name": "username mapper",
+      "identityProviderAlias": "Company-3",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "syncMode": "INHERIT",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "59b46b6c-19d2-46d8-8cb3-938a4e5838ce",
+      "name": "tenant-mapper",
+      "identityProviderAlias": "CX-Test-Access",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "attribute.value": "CX-Test-New",
+        "attribute": "tenant"
+      }
+    },
+    {
+      "id": "acd73fca-8d0b-401a-a71c-a296560c9e91",
+      "name": "username-mapper",
+      "identityProviderAlias": "idp18",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "syncMode": "INHERIT",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "f9130a08-d16a-4440-8934-a91a50f2a636",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "CX-Test-Access",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "attribute.value": "CX-Test-Access",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "fa579d1d-1c7b-40e7-a62a-40daad497c23",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "idp18",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "456ccb3e-a352-46f3-89e4-0a6fa8a3a5ce",
       "name": "tenant-mapper",
       "identityProviderAlias": "Company-2",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -6276,7 +6027,7 @@
       }
     },
     {
-      "id": "08665f68-74fd-42e2-a26c-58a2482a050e",
+      "id": "6c07f8e1-6461-40dd-bfa4-8b62507e9e02",
       "name": "tenant-mapper",
       "identityProviderAlias": "Company-1",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -6287,14 +6038,35 @@
       }
     },
     {
-      "id": "413da783-aed8-4099-9b77-e839ebd54606",
-      "name": "tenant-mapper",
-      "identityProviderAlias": "sap-oidc",
+      "id": "a30287ba-3979-4cbe-92a9-2beaf274f71f",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "Company-1",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
       "config": {
         "syncMode": "INHERIT",
-        "claims": "[]",
-        "attribute.value": "sap-oidc",
+        "attribute.value": "company-1",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "38271242-f62a-466a-aafe-bdc5465685f4",
+      "name": "username-mapper",
+      "identityProviderAlias": "Company-1",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "syncMode": "INHERIT",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "24660fe7-40d6-4f51-8457-7dbc83bb7def",
+      "name": "tenant-mapper",
+      "identityProviderAlias": "Company-3",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "attribute.value": "company-3",
         "attribute": "tenant"
       }
     }
@@ -6310,6 +6082,25 @@
         "config": {
           "max-clients": [
             "200"
+          ]
+        }
+      },
+      {
+        "id": "a4df1d6a-2c46-44f4-9d06-62eb9b754bab",
+        "name": "Allowed Protocol Mapper Types",
+        "providerId": "allowed-protocol-mappers",
+        "subType": "anonymous",
+        "subComponents": {},
+        "config": {
+          "allowed-protocol-mapper-types": [
+            "oidc-address-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-full-name-mapper",
+            "saml-user-attribute-mapper",
+            "saml-role-list-mapper",
+            "oidc-usermodel-property-mapper",
+            "saml-user-property-mapper"
           ]
         }
       },
@@ -6344,41 +6135,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
+            "saml-user-property-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "saml-role-list-mapper",
+            "oidc-full-name-mapper",
             "oidc-usermodel-property-mapper",
             "saml-user-attribute-mapper",
-            "saml-user-property-mapper",
             "oidc-sha256-pairwise-sub-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "oidc-full-name-mapper",
-            "saml-role-list-mapper",
             "oidc-address-mapper"
-          ]
-        }
-      },
-      {
-        "id": "b521525f-30e3-4b93-b42b-8c0dd53fc3af",
-        "name": "Full Scope Disabled",
-        "providerId": "scope",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {}
-      },
-      {
-        "id": "a4df1d6a-2c46-44f4-9d06-62eb9b754bab",
-        "name": "Allowed Protocol Mapper Types",
-        "providerId": "allowed-protocol-mappers",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {
-          "allowed-protocol-mapper-types": [
-            "saml-role-list-mapper",
-            "oidc-full-name-mapper",
-            "oidc-address-mapper",
-            "oidc-usermodel-property-mapper",
-            "saml-user-property-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
-            "saml-user-attribute-mapper"
           ]
         }
       },
@@ -6405,12 +6169,12 @@
             "true"
           ]
         }
-      }
-    ],
-    "org.keycloak.userprofile.UserProfileProvider": [
+      },
       {
-        "id": "d0e8129a-4ba9-4c4c-8a9e-308f0f79083e",
-        "providerId": "declarative-user-profile",
+        "id": "b521525f-30e3-4b93-b42b-8c0dd53fc3af",
+        "name": "Full Scope Disabled",
+        "providerId": "scope",
+        "subType": "anonymous",
         "subComponents": {},
         "config": {}
       }
@@ -6431,6 +6195,17 @@
         }
       },
       {
+        "id": "50220023-09bf-443a-a8b3-f306279cbb5b",
+        "name": "rsa-generated",
+        "providerId": "rsa-generated",
+        "subComponents": {},
+        "config": {
+          "priority": [
+            "100"
+          ]
+        }
+      },
+      {
         "id": "676a20ad-a79d-4175-998a-672bf4826e92",
         "name": "rsa-enc-generated",
         "providerId": "rsa-enc-generated",
@@ -6441,17 +6216,6 @@
           ],
           "algorithm": [
             "RSA-OAEP"
-          ]
-        }
-      },
-      {
-        "id": "50220023-09bf-443a-a8b3-f306279cbb5b",
-        "name": "rsa-generated",
-        "providerId": "rsa-generated",
-        "subComponents": {},
-        "config": {
-          "priority": [
-            "100"
           ]
         }
       },
@@ -6476,7 +6240,7 @@
   "defaultLocale": "en",
   "authenticationFlows": [
     {
-      "id": "f5a7574b-9956-48d7-b581-754dd7464fdb",
+      "id": "2730f316-0fda-42a8-a326-282bbd12aeea",
       "alias": "Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -6502,7 +6266,7 @@
       ]
     },
     {
-      "id": "ed864802-e1a9-4c0e-9f1b-10627e00fdb1",
+      "id": "ab7fd6b1-6a61-4414-ba51-d68ddeb58d9e",
       "alias": "Authentication Options",
       "description": "Authentication options.",
       "providerId": "basic-flow",
@@ -6536,7 +6300,7 @@
       ]
     },
     {
-      "id": "a3d2ee40-9d8d-44d8-aac4-b87a35fee27a",
+      "id": "bceb0a10-adae-43e6-adb7-5396f5cbc01d",
       "alias": "Browser - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -6562,7 +6326,7 @@
       ]
     },
     {
-      "id": "0ce39724-db9e-4323-aff6-40b33df52374",
+      "id": "20210dbb-a53c-4c0f-852a-5d9bfe3bd090",
       "alias": "Direct Grant - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -6588,7 +6352,7 @@
       ]
     },
     {
-      "id": "1a302419-7bdd-4128-a2c0-ad61a4398952",
+      "id": "2fda9cae-80ca-4f7e-9718-6f49564c5a42",
       "alias": "First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -6614,7 +6378,7 @@
       ]
     },
     {
-      "id": "ed8b5e71-d222-4b7a-b6c6-1e868a98477d",
+      "id": "fc7b4eef-5824-43de-8add-cfb4f452b33e",
       "alias": "Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -6640,7 +6404,7 @@
       ]
     },
     {
-      "id": "5388ec8a-64aa-43fc-a131-72e80c4b4c93",
+      "id": "02423a9a-bb21-49ce-982f-2764d6eaa4f5",
       "alias": "Login without auto user creation",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -6667,7 +6431,7 @@
       ]
     },
     {
-      "id": "d92f3b31-5618-439d-b7af-89baa512f79a",
+      "id": "96bc1512-9606-47b2-83fc-2d405eb2c21b",
       "alias": "Login without auto user creation Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -6693,7 +6457,7 @@
       ]
     },
     {
-      "id": "8b72ce2e-9f1b-440b-b1e4-e5f7d076ac4a",
+      "id": "3dc76628-aaf4-4a01-9464-27a6402d58af",
       "alias": "Login without auto user creation First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -6719,7 +6483,7 @@
       ]
     },
     {
-      "id": "a51701ac-d205-4e5b-ab07-80c86a038f10",
+      "id": "7bbf7e1b-b120-4121-a5b0-e7bf3ae87112",
       "alias": "Login without auto user creation Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -6745,7 +6509,7 @@
       ]
     },
     {
-      "id": "f7a7dc37-0b50-4639-9b5f-79263c1a97f7",
+      "id": "dbd17925-14e4-4f67-b6d3-3fe7aaf63906",
       "alias": "Login without auto user creation User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -6772,7 +6536,7 @@
       ]
     },
     {
-      "id": "7c81ac11-8bd2-4562-907f-9346a3e5f1c2",
+      "id": "97b3a548-a3eb-4af7-b080-92045f063b5a",
       "alias": "Login without auto user creation Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -6798,7 +6562,7 @@
       ]
     },
     {
-      "id": "9b29022c-aec9-4c76-8d90-50d3ddb0c700",
+      "id": "f5234897-363c-4d94-aa7e-4e6ea9f0a021",
       "alias": "Reset - Conditional OTP",
       "description": "Flow to determine if the OTP should be reset or not. Set to REQUIRED to force.",
       "providerId": "basic-flow",
@@ -6824,7 +6588,7 @@
       ]
     },
     {
-      "id": "1d95ec74-b5df-4da9-8919-448681f47cf1",
+      "id": "2644eefb-8f67-4247-8877-ddae4afa44ce",
       "alias": "User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -6851,7 +6615,7 @@
       ]
     },
     {
-      "id": "3e067df1-ff11-4e68-8d64-fce8c561502d",
+      "id": "cc569509-5e88-45b7-be76-55a98445fa15",
       "alias": "Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -6877,7 +6641,7 @@
       ]
     },
     {
-      "id": "2b77b8ed-4d57-4b0a-9128-bb711b2a61bb",
+      "id": "99db43d8-61a9-43aa-802f-d0c45d5c7dd5",
       "alias": "browser",
       "description": "browser based authentication",
       "providerId": "basic-flow",
@@ -6919,7 +6683,7 @@
       ]
     },
     {
-      "id": "d1543704-ccfd-4b8d-977f-c88b683f27cc",
+      "id": "536b8ab1-c28e-491b-9a3f-2ecd9def6842",
       "alias": "clients",
       "description": "Base authentication for clients",
       "providerId": "client-flow",
@@ -6961,7 +6725,7 @@
       ]
     },
     {
-      "id": "b85f4e6f-9336-439d-b676-ad949188520f",
+      "id": "e14ee30a-6a8f-4077-bc2e-87ade5757f7f",
       "alias": "direct grant",
       "description": "OpenID Connect Resource Owner Grant",
       "providerId": "basic-flow",
@@ -6995,7 +6759,7 @@
       ]
     },
     {
-      "id": "0a363d53-7e18-4a82-b96d-d2244300ad80",
+      "id": "9d029c4c-38c2-4602-83ee-9d8271457253",
       "alias": "docker auth",
       "description": "Used by Docker clients to authenticate against the IDP",
       "providerId": "basic-flow",
@@ -7013,7 +6777,7 @@
       ]
     },
     {
-      "id": "1a8e2b2a-3d1a-4079-bb47-8c6ac61a0938",
+      "id": "eab6172e-f1d9-4b94-960a-cbf73a831d74",
       "alias": "first broker login",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -7040,7 +6804,7 @@
       ]
     },
     {
-      "id": "3151a9af-d994-4904-9cc9-76a8b77fad3e",
+      "id": "103d1306-ce57-4529-8ed4-2f2b01db9625",
       "alias": "forms",
       "description": "Username, password, otp and other auth forms.",
       "providerId": "basic-flow",
@@ -7066,7 +6830,7 @@
       ]
     },
     {
-      "id": "c9ee5e8e-0a63-4302-a988-10d5d5789a45",
+      "id": "947fea9f-0269-4e0e-ad80-a7d5c3cdabb6",
       "alias": "http challenge",
       "description": "An authentication flow based on challenge-response HTTP Authentication Schemes",
       "providerId": "basic-flow",
@@ -7092,7 +6856,7 @@
       ]
     },
     {
-      "id": "c89a70ee-c994-4ad4-acde-545e19aa97d2",
+      "id": "3d7d026f-650c-4c75-9258-201e59091f57",
       "alias": "registration",
       "description": "registration flow",
       "providerId": "basic-flow",
@@ -7111,7 +6875,7 @@
       ]
     },
     {
-      "id": "0ecb74dc-8ca6-4978-a10a-f3c3d1b0638b",
+      "id": "d14813fa-fdbb-4ee0-850e-3abf30ab729b",
       "alias": "registration form",
       "description": "registration form",
       "providerId": "form-flow",
@@ -7153,7 +6917,7 @@
       ]
     },
     {
-      "id": "5c415cbb-96ba-4c4a-abc6-1e2a5da477ba",
+      "id": "64f994ae-15ce-41ac-b040-5b996ef920b5",
       "alias": "reset credentials",
       "description": "Reset credentials for a user if they forgot their password or something",
       "providerId": "basic-flow",
@@ -7195,7 +6959,7 @@
       ]
     },
     {
-      "id": "cf314e1c-a1f8-4797-b8f1-50456ecb9d05",
+      "id": "e590683c-028b-4640-b975-10e5ea2757ab",
       "alias": "saml ecp",
       "description": "SAML ECP Profile Authentication Flow",
       "providerId": "basic-flow",
@@ -7215,14 +6979,14 @@
   ],
   "authenticatorConfig": [
     {
-      "id": "df6291e2-2df7-46e9-b538-6ce9fbc9b218",
+      "id": "a4971013-3bcb-40f6-b909-68d0b8562483",
       "alias": "create unique user config",
       "config": {
         "require.password.update.after.registration": "false"
       }
     },
     {
-      "id": "2294cdc0-6f6c-493a-a7e0-d5d404beb91f",
+      "id": "789e9ee5-4b29-4d9a-8fd4-fcc3c89f4f31",
       "alias": "review profile config",
       "config": {
         "update.profile.on.first.login": "missing"
