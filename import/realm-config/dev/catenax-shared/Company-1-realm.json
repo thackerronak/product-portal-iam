@@ -1,5 +1,5 @@
 {
-    "id": "Company 1",
+    "id": "Company-1",
     "realm": "Company-1",
     "notBefore": 0,
     "defaultSignatureAlgorithm": "RS256",
@@ -51,7 +51,7 @@
           "description": "${role_uma_authorization}",
           "composite": false,
           "clientRole": false,
-          "containerId": "Company 1",
+          "containerId": "Company-1",
           "attributes": {}
         },
         {
@@ -60,12 +60,12 @@
           "description": "${role_offline-access}",
           "composite": false,
           "clientRole": false,
-          "containerId": "Company 1",
+          "containerId": "Company-1",
           "attributes": {}
         },
         {
           "id": "f35527ef-748f-46a8-8f75-5261019bd2ca",
-          "name": "default-roles-company 1",
+          "name": "default-roles-company-1",
           "description": "${role_default-roles}",
           "composite": true,
           "composites": {
@@ -81,7 +81,7 @@
             }
           },
           "clientRole": false,
-          "containerId": "Company 1",
+          "containerId": "Company-1",
           "attributes": {}
         }
       ],
@@ -397,11 +397,11 @@
     "groups": [],
     "defaultRole": {
       "id": "f35527ef-748f-46a8-8f75-5261019bd2ca",
-      "name": "default-roles-company 1",
+      "name": "default-roles-company-1",
       "description": "${role_default-roles}",
       "composite": true,
       "clientRole": false,
-      "containerId": "Company 1"
+      "containerId": "Company-1"
     },
     "requiredCredentials": [
       "password"
@@ -506,13 +506,13 @@
         "clientId": "account-console",
         "name": "${client_account-console}",
         "rootUrl": "${authBaseUrl}",
-        "baseUrl": "/realms/Company 1/account/",
+        "baseUrl": "/realms/Company-1/account/",
         "surrogateAuthRequired": false,
         "enabled": true,
         "alwaysDisplayInConsole": false,
         "clientAuthenticatorType": "client-secret",
         "redirectUris": [
-          "/realms/Company 1/account/*"
+          "/realms/Company-1/account/*"
         ],
         "webOrigins": [],
         "notBefore": 0,
