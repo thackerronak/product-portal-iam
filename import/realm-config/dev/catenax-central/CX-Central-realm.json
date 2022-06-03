@@ -1336,6 +1336,11 @@
       "realmRoles": [
         "default-roles-catena-x realm"
       ],
+      "clientRoles": {
+        "realm-management": [
+          "manage-identity-providers"
+        ]
+      },
       "notBefore": 0,
       "groups": []
     },

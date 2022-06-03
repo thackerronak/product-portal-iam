@@ -1336,6 +1336,11 @@
       "realmRoles": [
         "default-roles-catena-x realm"
       ],
+      "clientRoles": {
+        "realm-management": [
+          "manage-identity-providers"
+        ]
+      },
       "notBefore": 0,
       "groups": []
     },
@@ -3995,7 +4000,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://catenaxintakssrv.germanywestcentral.cloudapp.azure.com/*",
+        "https://centralidp.int.demo.catena-x.net/*",
         "http://localhost"
       ],
       "webOrigins": [],
