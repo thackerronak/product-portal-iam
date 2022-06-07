@@ -10,6 +10,31 @@ auth:
 
 extraVolumeSecretPath: portal/data/pen/iam/centralidp-realms
 
+## @param extraEnvVars Extra environment variables to be set on Keycloak container
+## Example:
+## extraEnvVars:
+##   - name: FOO
+##     value: "bar"
+##
+## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
+##
+extraEnvVars:
+  - name: KEYCLOAK_USER
+    value: "admin"
+  - name: KEYCLOAK_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: centralidp-keycloak
+        key: admin-password
+  - name: KEYCLOAK_DATABASE_HOST
+    value: centralidp-pen-postgresql-primary
+  - name: CACHE_OWNERS_COUNT
+    value: "3"
+  - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    value: "3"
+  - name: KEYCLOAK_EXTRA_ARGS
+    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
+
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
 ## initContainers:
