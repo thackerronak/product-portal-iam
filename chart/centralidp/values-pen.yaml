@@ -1,0 +1,68 @@
+## Keycloak authentication parameters
+## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
+##
+auth:
+  existingSecretPath: portal/data/pen/iam/centralidp-keycloak
+
+## Keycloak ingress parameters
+## ref: https://kubernetes.io/docs/user-guide/ingress/
+##
+
+extraVolumeSecretPath: portal/data/pen/iam/centralidp-realms
+
+## @param initContainers Add additional init containers to the Keycloak pods
+## Example:
+## initContainers:
+##   - name: your-image-name
+##     image: your-image
+##     imagePullPolicy: Always
+##     ports:
+##       - name: portname
+##         containerPort: 1234
+##
+initContainers:
+  - name: import
+    image: ghcr.io/catenax-ng/product-portal-iam_iam-import-pen:latest
+    imagePullPolicy: Always
+    command:
+      - sh
+    args:
+      - -c
+      - |
+        echo "Copying themes..."
+        cp -R /import/themes/* /themes
+        echo "Copying realms..."
+        cp -R /import/catenax-central/realms/* /realms
+        echo "Copying realms-secrets..."
+        cp /secrets/* /realms
+    volumeMounts:
+    - name: themes
+      mountPath: "/themes"
+    - name: realms
+      mountPath: "/realms"
+    - name: realm-secrets
+      mountPath: "/secrets"
+
+ingress:
+  ## @param ingress.hostname Default host for the ingress record
+  hostname: centralidp-pen.dev.demo.catena-x.net
+  ## annotations:
+  ##   kubernetes.io/ingress.class: nginx
+  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
+  ##
+  annotations:
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp-pen.dev.demo.catena-x.net, http://localhost:3000
+
+## PostgreSQL chart configuration
+## ref: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+## @param postgresql.enabled Switch to enable or disable the PostgreSQL helm chart
+## @param postgresql.auth.username Name for a custom user to create
+## @param postgresql.auth.password Password for the custom user to create
+## @param postgresql.auth.database Name for a custom database to create
+## @param postgresql.auth.existingSecret Name of existing secret to use for PostgreSQL credentials
+## @param postgresql.architecture PostgreSQL architecture (`standalone` or `replication`)
+
+postgresql:
+  auth:
+    secret:
+      path: portal/data/pen/iam/centralidp-postgres
