@@ -2,7 +2,7 @@
 ## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
 ##
 auth:
-  existingSecretPath: "portal/data/dev/iam/sharedidp-keycloak"
+  existingSecretPath: portal/data/dev/iam/sharedidp-keycloak
 
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/

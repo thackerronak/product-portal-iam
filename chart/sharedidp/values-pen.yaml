@@ -2,13 +2,38 @@
 ## ref: https://github.com/bitnami/bitnami-docker-keycloak#admin-credentials
 ##
 auth:
-  existingSecretPath: portal/data/dev/iam/centralidp-keycloak
+  existingSecretPath: portal/data/pen/iam/sharedidp-keycloak
 
 ## Keycloak ingress parameters
 ## ref: https://kubernetes.io/docs/user-guide/ingress/
 ##
 
-extraVolumeSecretPath: portal/data/dev/iam/centralidp-realms
+extraVolumeSecretPath: portal/data/pen/iam/sharedidp-realms
+
+## @param extraEnvVars Extra environment variables to be set on Keycloak container
+## Example:
+## extraEnvVars:
+##   - name: FOO
+##     value: "bar"
+##
+## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication" 
+##
+extraEnvVars:
+  - name: KEYCLOAK_USER
+    value: "admin"
+  - name: KEYCLOAK_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: sharedidp-keycloak
+        key: admin-password
+  - name: KEYCLOAK_DATABASE_HOST
+    value: sharedidp-pen-postgresql-primary
+  - name: CACHE_OWNERS_COUNT
+    value: "3"
+  - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    value: "3"
+  - name: KEYCLOAK_EXTRA_ARGS
+    value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
 
 ## @param initContainers Add additional init containers to the Keycloak pods
 ## Example:
@@ -22,7 +47,7 @@ extraVolumeSecretPath: portal/data/dev/iam/centralidp-realms
 ##
 initContainers:
   - name: import
-    image: ghcr.io/catenax-ng/product-portal-iam_iam-import-dev:latest
+    image: ghcr.io/catenax-ng/product-portal-iam_iam-import-pen:latest
     imagePullPolicy: Always
     command:
       - sh
@@ -32,7 +57,7 @@ initContainers:
         echo "Copying themes..."
         cp -R /import/themes/* /themes
         echo "Copying realms..."
-        cp -R /import/catenax-central/realms/* /realms
+        cp -R /import/catenax-shared/realms/* /realms
         echo "Copying realms-secrets..."
         cp /secrets/* /realms
     volumeMounts:
@@ -45,13 +70,13 @@ initContainers:
 
 ingress:
   ## @param ingress.hostname Default host for the ingress record
-  hostname: centralidp.dev.demo.catena-x.net
+  hostname: sharedidp-pen.dev.demo.catena-x.net
   ## annotations:
   ##   kubernetes.io/ingress.class: nginx
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations:
-    nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.dev.demo.catena-x.net, http://localhost:3000
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp-pen.dev.demo.catena-x.net, http://localhost:3000
 
 ## PostgreSQL chart configuration
 ## ref: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
@@ -65,4 +90,5 @@ ingress:
 postgresql:
   auth:
     secret:
-      path: portal/data/dev/iam/centralidp-postgres
+      name: sharedidp-postgres
+      path: portal/data/pen/iam/sharedidp-postgres

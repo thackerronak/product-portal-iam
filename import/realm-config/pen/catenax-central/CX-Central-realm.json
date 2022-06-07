@@ -1820,7 +1820,7 @@
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
         "/realms/CX-Central/account/*",
-        "https://centralidp.dev.demo.catena-x.net/*"
+        "https://centralidp-pen.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -2288,7 +2288,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal.dev.demo.catena-x.net/*",
+        "https://portal-pen.dev.demo.catena-x.net/*",
         "http://localhost:3000/*"
       ],
       "webOrigins": [
@@ -2394,14 +2394,14 @@
       "clientId": "Cl2-CX-Portal",
       "name": "",
       "description": "",
-      "rootUrl": "https://portal.dev.demo.catena-x.net/home",
+      "rootUrl": "https://portal-pen.dev.demo.catena-x.net/home",
       "adminUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal.dev.demo.catena-x.net/*",
+        "https://portal-pen.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
         "https://catenax-bpdm-dev.demo.catena-x.net/*",
         "http://localhost:3000/*"
@@ -2492,13 +2492,13 @@
       "id": "36e2745d-f331-4fa5-bbfa-90947d7f1dc4",
       "clientId": "Cl3-CX-Semantic",
       "rootUrl": "",
-      "adminUrl": "https://portal.dev.demo.catena-x.net/home",
+      "adminUrl": "https://portal-pen.dev.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal.dev.demo.catena-x.net/*",
+        "https://portal-pen.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
         "http://localhost:3000/*"
       ],
@@ -2588,13 +2588,13 @@
       "id": "0dec1120-c21e-42ad-a779-94fc36217072",
       "clientId": "Cl4-CX-DigitalTwin",
       "rootUrl": "",
-      "adminUrl": "https://portal.dev.demo.catena-x.net/home",
+      "adminUrl": "https://portal-pen.dev.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal.dev.demo.catena-x.net/*",
+        "https://portal-pen.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
         "https://semantics.dev.demo.catena-x.net/*",
         "http://localhost:3000/*"
@@ -4363,7 +4363,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://centralidp.dev.demo.catena-x.net/*",
+        "https://centralidp-pen.dev.demo.catena-x.net/*",
         "http://localhost"
       ],
       "webOrigins": [],
@@ -6178,15 +6178,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.dev.demo.catena-x.net/auth/realms/CX-Test-Access",
+        "jwksUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/CX-Test-Access",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
@@ -6205,15 +6205,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-1",
+        "jwksUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-1",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
@@ -6232,15 +6232,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-2",
+        "jwksUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-2",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
@@ -6259,15 +6259,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-3",
+        "jwksUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-3",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
