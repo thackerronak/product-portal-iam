@@ -261,7 +261,19 @@ extraStartupArgs: ""
 ## Specify dictionary of scripts to be run at first boot
 ## ref: https://github.com/bitnami/bitnami-docker-keycloak#initializing-a-new-instance
 ## Example:
-## initdbScripts:
+initdbScripts:
+  my_init_script.sh: |
+    #!/bin/bash
+    echo "Configuring the my_theme_name theme"
+    KEYCLOAK_CONF_FILE="standalone-ha.xml"
+    sh /opt/bitnami/keycloak/bin/jboss-cli.sh <<EOF
+    embed-server --server-config=${KEYCLOAK_CONF_FILE} --std-out=discard
+    batch
+    /subsystem=keycloak-server/theme=defaults:write-attribute(name=welcomeTheme,value=catenax-central)
+    /subsystem=keycloak-server/theme=defaults:write-attribute(name=default,value=catenax-central)
+    run-batch
+    stop-embedded-server
+    EOF
 ##   my_init_script.sh: |
 ##      #!/bin/bash
 ##      echo "Do something."
