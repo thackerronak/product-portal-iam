@@ -305,8 +305,6 @@ extraEnvVars:
     value: "3"
   - name: KEYCLOAK_EXTRA_ARGS
     value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
-  - name: KEYCLOAK_WELCOME_THEME
-    value: "catenax-central"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""
