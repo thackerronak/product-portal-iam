@@ -561,9 +561,15 @@ initContainers:
         cp -R /import/catenax-central/realms/* /realms
         echo "Copying realms-secrets..."
         cp /secrets/* /realms
-        echo "content of keycloak"
+        echo "Content"
+        ls
+        echo "Content of opt"
+        ls /opt
+        echo "Content of bitnami"
+        ls /opt/bitnami
+        echo "Content of keycloak"
         ls /opt/bitnami/keycloak
-        echo "content of themes"
+        echo "Content of themes"
         ls /opt/bitnami/keycloak/themes
     volumeMounts:
     - name: realms
