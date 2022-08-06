@@ -264,16 +264,18 @@ extraStartupArgs: ""
 initdbScripts:
   my_init_script.sh: |
     #!/bin/bash
-    echo "Configuring the my_theme_name theme"
-    KEYCLOAK_CONF_FILE="standalone-ha.xml"
-    sh /opt/bitnami/keycloak/bin/jboss-cli.sh <<EOF
-    embed-server --server-config=${KEYCLOAK_CONF_FILE} --std-out=discard
-    batch
-    /subsystem=keycloak-server/theme=defaults:write-attribute(name=welcomeTheme,value=keycloak)
-    /subsystem=keycloak-server/theme=defaults:write-attribute(name=default,value=keycloak)
-    run-batch
-    stop-embedded-server
-    EOF
+    echo "Content"
+    ls
+    echo "Content of opt"
+    ls /opt
+    echo "Content of bitnami"
+    ls /opt/bitnami
+    echo "Content of keycloak"
+    ls /opt/bitnami/keycloak
+    echo "Content of themes"
+    ls /opt/bitnami/keycloak/themes
+    echo "Content of catenax-central"
+    ls /opt/bitnami/keycloak/themes/catenax-central
 ##   my_init_script.sh: |
 ##      #!/bin/bash
 ##      echo "Do something."
