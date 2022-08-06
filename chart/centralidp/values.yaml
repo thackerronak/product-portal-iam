@@ -266,8 +266,6 @@ initdbScripts:
     #!/bin/bash
     echo "Content"
     ls
-    echo "Content of themes"
-    ls /themes
     echo "Content of opt"
     ls /opt
     echo "Content of bitnami"
