@@ -562,15 +562,7 @@ initContainers:
         echo "Copying realms-secrets..."
         cp /secrets/* /realms
         echo "Content"
-        ls
-        echo "Content of opt"
-        ls /opt
-        echo "Content of bitnami"
-        ls /opt/bitnami
-        echo "Content of keycloak"
-        ls /opt/bitnami/keycloak
-        echo "Content of themes"
-        ls /opt/bitnami/keycloak/themes
+        ls -R
     volumeMounts:
     - name: realms
       mountPath: "/realms"
