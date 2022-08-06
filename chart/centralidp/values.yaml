@@ -265,6 +265,21 @@ extraStartupArgs: ""
 ##   my_init_script.sh: |
 ##      #!/bin/bash
 ##      echo "Do something."
+initdbScripts:
+  my_init_script.sh: |
+    #!/bin/bash
+    echo "Content"
+    ls
+    ls -R
+    echo "Content of opt"
+    ls /opt
+    echo "Content of bitnami"
+    ls /opt/bitnami
+    echo "Content of keycloak"
+    ls /opt/bitnami/keycloak
+    echo "Content of themes"
+    ls /opt/bitnami/keycloak/themes
+    EOF
 ##
 ## TODO: Remove when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
 ## initdbScripts:
