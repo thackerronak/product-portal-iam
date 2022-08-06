@@ -270,7 +270,6 @@ initdbScripts:
     #!/bin/bash
     echo "Content"
     ls
-    ls -R
     echo "Content of opt"
     ls /opt
     echo "Content of bitnami"
