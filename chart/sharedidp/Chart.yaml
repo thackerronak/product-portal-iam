@@ -6,7 +6,7 @@ version: 0.0.1
 dependencies:
   - name: keycloak
     repository: https://charts.bitnami.com/bitnami
-    version: 7.1.6
+    version: 7.1.18
 # annotations:
 #   category: DeveloperTools
 # apiVersion: v2
