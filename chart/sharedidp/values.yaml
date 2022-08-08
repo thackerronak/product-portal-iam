@@ -535,7 +535,7 @@ extraVolumeSecretPath: portal/data/int/iam/sharedidp-realms
 ##
 extraVolumeMounts:
   - name: themes
-    mountPath: "/opt/bitnami/keycloak/themes"
+    mountPath: "/opt/bitnami/keycloak/themes/catenax-shared"
   - name: realms
     mountPath: "/realms"
   - name: realm-secrets
@@ -560,7 +560,7 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/themes/* /themes
+        cp -R /import/themes/catenax-shared/* /themes
         echo "Copying realms..."
         cp -R /import/catenax-shared/realms/* /realms
         echo "Copying realms-secrets..."

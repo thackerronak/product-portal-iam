@@ -30,7 +30,7 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/themes/* /themes
+        cp -R /import/themes/catenax-shared/* /themes
         echo "Copying realms..."
         cp -R /import/catenax-shared/realms/* /realms
         echo "Copying realms-secrets..."

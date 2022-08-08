@@ -537,7 +537,7 @@ extraVolumeSecretPath: portal/data/int/iam/centralidp-realms
 ##
 extraVolumeMounts:
   - name: themes
-    mountPath: "/opt/bitnami/keycloak/themes"
+    mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
   - name: realms
     mountPath: "/realms"
   - name: realm-secrets
@@ -562,7 +562,7 @@ initContainers:
       - -c
       - |
         echo "Copying themes..."
-        cp -R /import/themes/* /themes
+        cp -R /import/themes/catenax-central/* /themes
         echo "Copying realms..."
         cp -R /import/catenax-central/realms/* /realms
         echo "Copying realms-secrets..."
