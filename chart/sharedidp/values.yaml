@@ -16,8 +16,6 @@ keycloak:
         secretKeyRef:
           name: sharedidp-keycloak
           key: admin-password
-    - name: KEYCLOAK_DATABASE_HOST
-      value: sharedidpnew-postgresql-primary
     - name: CACHE_OWNERS_COUNT
       value: "3"
     - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
