@@ -27,36 +27,6 @@ keycloak:
   replicaCount: 3
   startupProbe:
     enabled: true
-  ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
-  customLivenessProbe:
-    httpGet:
-      path: /auth
-      port: http
-    initialDelaySeconds: 300
-    periodSeconds: 1
-    timeoutSeconds: 5
-    failureThreshold: 3
-    successThreshold: 1
-  ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
-  customReadinessProbe:
-    httpGet:
-      path: /auth/realms/master
-      port: http
-    initialDelaySeconds: 120
-    periodSeconds: 10
-    timeoutSeconds: 1
-    failureThreshold: 3
-    successThreshold: 1
-  ## TODO: Remove customProbes when switching to subdomain (idp.catena-x.com) instead of method (/idp/xy)
-  customStartupProbe:
-    httpGet:
-      path: /auth
-      port: http
-    initialDelaySeconds: 120
-    periodSeconds: 5
-    timeoutSeconds: 1
-    failureThreshold: 60
-    successThreshold: 1
   extraVolumes:
     - name: themes
       emptyDir: {}
