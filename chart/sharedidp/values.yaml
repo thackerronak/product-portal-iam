@@ -674,6 +674,7 @@ keycloak:
     ##   cert-manager.io/cluster-issuer: cluster-issuer-name
     ##
     annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
       nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.int.demo.catena-x.net, http://localhost:3000
@@ -731,10 +732,7 @@ keycloak:
     ##   key:
     ##   certificate:
     ##
-    secrets:
-      - name: tls-secret
-        key: ""
-        certificate: ""
+    secrets: []
 
   ## Network Policy configuration
   ## ref: https://kubernetes.io/docs/concepts/services-networking/network-policies/
