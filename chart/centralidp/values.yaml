@@ -581,6 +581,13 @@ initContainers:
         cp -R /import/catenax-central/realms/* /realms
         echo "Copying realms-secrets..."
         cp /secrets/* /realms
+    volumeMounts:
+    - name: themes
+      mountPath: "/themes"
+    - name: realms
+      mountPath: "/realms"
+    - name: realm-secrets
+      mountPath: "/secrets"
 ## @param sidecars Add additional sidecar containers to the Keycloak pods
 ## Example:
 ## sidecars:
