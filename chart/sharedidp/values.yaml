@@ -25,8 +25,6 @@ keycloak:
     - name: KEYCLOAK_EXTRA_ARGS
       value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
   replicaCount: 3
-  startupProbe:
-    enabled: true
   extraVolumes:
     - name: themes
       emptyDir: {}
