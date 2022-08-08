@@ -297,7 +297,7 @@ keycloak:
           name: sharedidp-keycloak
           key: admin-password
     - name: KEYCLOAK_DATABASE_HOST
-      value: sharedidp-postgresql-primary
+      value: sharedidpnew-postgresql-primary
     - name: CACHE_OWNERS_COUNT
       value: "3"
     - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
@@ -657,7 +657,7 @@ keycloak:
     ##
     apiVersion: ""
     ## @param ingress.hostname Default host for the ingress record
-    hostname: sharedidp.int.demo.catena-x.net
+    hostname: sharedidpnew.int.demo.catena-x.net
     ## @param ingress.path Default path for the ingress record
     ##
     path: /
