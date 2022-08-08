@@ -7,7 +7,6 @@ keycloak:
   proxyAddressForwarding: true
   serviceDiscovery:
     enabled: true
-  ## TODO: KEYCLOAK_DATABASE_HOST needs to be overwritten in case of mode "replication"
   extraEnvVars:
     - name: KEYCLOAK_USER
       value: "admin"
