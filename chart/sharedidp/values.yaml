@@ -4,7 +4,6 @@ keycloak:
   auth:
     adminUser: admin
     existingSecret: sharedidp-keycloak
-    existingSecretPath: portal/data/int/iam/sharedidp-keycloak
   proxyAddressForwarding: true
   serviceDiscovery:
     enabled: true
@@ -66,7 +65,6 @@ keycloak:
     - name: realm-secrets
       secret:
         secretName: secret-sharedidp-realms
-  extraVolumeSecretPath: portal/data/int/iam/sharedidp-realms
   extraVolumeMounts:
     - name: themes
       mountPath: "/opt/bitnami/keycloak/themes/catenax-shared"
@@ -130,6 +128,16 @@ keycloak:
       username: kcshared
       database: iamsharedidp
       existingSecret: sharedidp-postgres
-      secret:
-        path: portal/data/int/iam/sharedidp-postgres
     architecture: replication
+
+secrets:
+  auth:
+    existingSecret:
+      path: portal/data/int/iam/sharedidp-keycloak
+  extraVolumes:
+    secret:
+      path: portal/data/int/iam/sharedidp-realms
+  postgresql:
+    auth:
+      existingSecret:
+        path: portal/data/int/iam/sharedidp-postgres
