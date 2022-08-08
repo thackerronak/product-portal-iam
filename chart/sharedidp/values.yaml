@@ -112,16 +112,6 @@ keycloak:
       nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
       nginx.ingress.kubernetes.io/use-regex: "true"
     tls: true
-  rbac:
-    create: true
-    rules:
-      - apiGroups:
-          - ""
-        resources:
-          - pods
-        verbs:
-          - get
-          - list
   postgresql:
     enabled: true
     auth:
