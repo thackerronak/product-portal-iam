@@ -1,6 +1,9 @@
-This repository contains all the necessary configuration to deploy the CX IAM solution based on keycloak. 
-The repository is split up in three parts.
-    1. The helm charts to deploy the CX IAM solution to various stages 
-    2. An init-image Dockerfile that copies all CX specific configuration onto the Keycloak Server
-    3. The import content itself. Currently this is only the keycloak-themes. Late this could be expanded by e.g. realm-config or base-users
-    
+# Catena-X IAM: Keycloak instances
+
+This repository contains all the necessary configuration to deploy the Catena-X (CX) Keycloak instances based on the [helm chart from Bitnami (chart version 7.1.18, app version 16.1.1)](https://artifacthub.io/packages/helm/bitnami/keycloak/7.1.18).
+
+The repository is split up in:
+
+* The helm charts to deploy the Catena-X (CX) Keycloak instances
+
+* A dockerfile for an init container that copies all CX specific configuration onto the Keycloak Server (e.g. keycloak-themes and realm-config)
