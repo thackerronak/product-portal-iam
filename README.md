@@ -4,5 +4,5 @@ This repository contains all the necessary configuration to deploy the Catena-X 
 
 The repository is split up in:
 
-* The helm charts to deploy the Catena-X (CX) Keycloak instances
+* The helm charts to deploy the CX Keycloak instances
 * A dockerfile for an init container that copies all CX specific configuration onto the Keycloak Server (e.g. keycloak-themes and realm-config)
