@@ -8,7 +8,7 @@ keycloak:
       mountPath: "/secrets"
   initContainers:
     - name: import
-      image: ghcr.io/catenax-ng/product-portal-iam_iam-import-dev:latest
+      image: ghcr.io/catenax-ng/product-portal-iam_iam-import-int:latest
       imagePullPolicy: Always
       command:
         - sh
@@ -31,12 +31,12 @@ keycloak:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: sharedidp.dev.demo.catena-x.net
+    hostname: sharedidp.int.demo.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.dev.demo.catena-x.net, http://localhost:3000
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.int.demo.catena-x.net, http://localhost:3000
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -47,18 +47,18 @@ keycloak:
 secrets:
   auth:
     existingSecret:
-      adminpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#management-password>"
+      adminpassword: "<path:portal/data/int/iam/sharedidp-keycloak#admin-password>"
+      managementpassword: "<path:portal/data/int/iam/sharedidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
-        postgrespassword: "<path:portal/data/dev/iam/sharedidp-postgres#postgres-password>"
-        password: "<path:portal/data/dev/iam/sharedidp-postgres#password>"
-        replicationPassword: "<path:portal/data/dev/iam/sharedidp-postgres#replication-password>"
+        postgrespassword: "<path:portal/data/int/iam/sharedidp-postgres#postgres-password>"
+        password: "<path:portal/data/int/iam/sharedidp-postgres#password>"
+        replicationPassword: "<path:portal/data/int/iam/sharedidp-postgres#replication-password>"
   realmuser:
     enabled: true
-    cxtestaccessuser: "<path:portal/data/dev/iam/sharedidp-realms#CX-Test-Access-users-0.json>"
-    company1user: "<path:portal/data/dev/iam/sharedidp-realms#Company-1-users-0.json>"
-    company2user: "<path:portal/data/dev/iam/sharedidp-realms#Company-2-users-0.json>"
-    company3user: "<path:portal/data/dev/iam/sharedidp-realms#Company-3-users-0.json>"
-    masteruser: "<path:portal/data/dev/iam/sharedidp-realms#Company-1-users-0.json>"
+    cxtestaccessuser: "<path:portal/data/int/iam/sharedidp-realms#CX-Test-Access-users-0.json>"
+    company1user: "<path:portal/data/int/iam/sharedidp-realms#Company-1-users-0.json>"
+    company2user: "<path:portal/data/int/iam/sharedidp-realms#Company-2-users-0.json>"
+    company3user: "<path:portal/data/int/iam/sharedidp-realms#Company-3-users-0.json>"
+    masteruser: "<path:portal/data/int/iam/sharedidp-realms#Company-1-users-0.json>"
