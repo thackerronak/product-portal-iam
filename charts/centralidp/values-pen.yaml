@@ -1,4 +1,19 @@
 keycloak:
+  extraVolumes:
+    - name: themes
+      emptyDir: {}
+    - name: realms
+      emptyDir: {}
+    - name: realm-secrets
+      secret:
+        secretName: secret-centralidp-realms
+  extraVolumeMounts:
+    - name: themes
+      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
+    - name: realms
+      mountPath: "/realms"
+    - name: realm-secrets
+      mountPath: "/secrets"
   initContainers:
     - name: import
       image: ghcr.io/catenax-ng/product-portal-iam_iam-import-pen:latest
@@ -21,7 +36,6 @@ keycloak:
         mountPath: "/realms"
       - name: realm-secrets
         mountPath: "/secrets"
-
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -41,11 +55,14 @@ keycloak:
 secrets:
   auth:
     existingSecret:
-      path: portal/data/pen/iam/centralidp-keycloak
-  extraVolumes:
-    secret:
-      path: portal/data/pen/iam/centralidp-realms
+      adminpassword: "<path:portal/data/pen/iam/centralidp-keycloak#admin-password>"
+      managementpassword: "<path:portal/data/pen/iam/centralidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
-        path: portal/data/pen/iam/centralidp-postgres
+        postgrespassword: "<path:portal/data/pen/iam/centralidp-postgres#postgres-password>"
+        password: "<path:portal/data/pen/iam/centralidp-postgres#password>"
+        replicationPassword: "<path:portal/data/pen/iam/centralidp-postgres#replication-password>"
+  realmuser:
+    enabled: true
+    cxcentraluser: "<path:portal/data/pen/iam/centralidp-realms#CX-Central-users-0.json>"

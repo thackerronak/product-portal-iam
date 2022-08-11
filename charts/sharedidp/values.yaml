@@ -1,0 +1,88 @@
+keycloak:
+  image:
+    tag: 16.1.1-debian-10-r103
+  auth:
+    adminUser: admin
+    existingSecret: sharedidp-keycloak
+  proxyAddressForwarding: true
+  serviceDiscovery:
+    enabled: true
+  extraEnvVars:
+    - name: KEYCLOAK_USER
+      value: "admin"
+    - name: KEYCLOAK_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: sharedidp-keycloak
+          key: admin-password
+    - name: CACHE_OWNERS_COUNT
+      value: "3"
+    - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+      value: "3"
+    - name: KEYCLOAK_EXTRA_ARGS
+      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
+  replicaCount: 3
+  extraVolumes:
+    - name: themes
+      emptyDir: {}
+    - name: realms
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: themes
+      mountPath: "/opt/bitnami/keycloak/themes/catenax-shared"
+    - name: realms
+      mountPath: "/realms"
+  initContainers:
+    - name: import
+      image: ghcr.io/catenax-ng/product-portal-iam_iam-import:generic
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying themes..."
+          cp -R /import/themes/catenax-shared/* /themes
+          echo "Copying realms..."
+          cp -R /import/catenax-shared/realms/* /realms
+      volumeMounts:
+      - name: themes
+        mountPath: "/themes"
+      - name: realms
+        mountPath: "/realms"
+  service:
+    type: ClusterIP
+    sessionAffinity: ClientIP
+  ingress:
+    enabled: false
+  rbac:
+    create: true
+    rules:
+      - apiGroups:
+          - ""
+        resources:
+          - pods
+        verbs:
+          - get
+          - list
+  postgresql:
+    enabled: true
+    auth:
+      username: kcshared
+      database: iamsharedidp
+      existingSecret: sharedidp-postgres
+    architecture: replication
+
+secrets:
+  auth:
+    existingSecret:
+      adminpassword: ""
+      managementpassword: ""
+  postgresql:
+    auth:
+      existingSecret:
+        postgrespassword: ""
+        password: ""
+        replicationPassword: ""
+  realmuser:
+    enabled: false
