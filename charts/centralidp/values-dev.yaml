@@ -41,11 +41,14 @@ keycloak:
 secrets:
   auth:
     existingSecret:
-      path: portal/data/dev/iam/centralidp-keycloak
-  extraVolumes:
-    secret:
-      path: portal/data/dev/iam/centralidp-realms
+      adminpassword: "<path:portal/data/dev/iam/centralidp-keycloak#admin-password>"
+      managementpassword: "<path:portal/data/dev/iam/centralidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
-        path: portal/data/dev/iam/centralidp-postgres
+        postgrespassword: "<path:portal/data/dev/iam/centralidp-postgres#postgres-password>"
+        password: "<path:portal/data/dev/iam/centralidp-postgres#password>"
+        replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
+  realmuser:
+    enabled: true
+    cxcentraluser: "<path:portal/data/dev/iam/centralidp-realms#CX-Central-users-0.json>"
