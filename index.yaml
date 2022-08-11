@@ -1,0 +1,31 @@
+apiVersion: v1
+entries:
+  centralidp:
+  - apiVersion: v2
+    created: "2022-08-11T20:28:56.41289371Z"
+    dependencies:
+    - name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.1.18
+    description: Helm chart for Catena-X Central Keycloak Instance
+    digest: d056087c6043880186653c8dcbff2a9ccb9fd76d252e65cfcc37334a2b3a182b
+    name: centralidp
+    type: application
+    urls:
+    - https://github.com/catenax-ng/product-portal-iam/releases/download/centralidp-0.5.1/centralidp-0.5.1.tgz
+    version: 0.5.1
+  sharedidp:
+  - apiVersion: v2
+    created: "2022-08-11T20:28:56.681757776Z"
+    dependencies:
+    - name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.1.18
+    description: Helm chart for Catena-X Shared Keycloak Instance
+    digest: 584f7b16852a8d8b5b8795bb296428ce35c0d9b5c284d6c76977bdfea33d2d71
+    name: sharedidp
+    type: application
+    urls:
+    - https://github.com/catenax-ng/product-portal-iam/releases/download/sharedidp-0.5.1/sharedidp-0.5.1.tgz
+    version: 0.5.1
+generated: "2022-08-11T20:28:56.681767676Z"
