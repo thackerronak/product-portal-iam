@@ -1,4 +1,11 @@
 keycloak:
+  extraVolumes:
+    - name: realm-secrets
+      secret:
+        secretName: secret-centralidp-realms
+  extraVolumeMounts:
+    - name: realm-secrets
+      mountPath: "/secrets"
   initContainers:
     - name: import
       image: ghcr.io/catenax-ng/product-portal-iam_iam-import-pen:latest

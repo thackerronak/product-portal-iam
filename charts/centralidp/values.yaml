@@ -32,8 +32,6 @@ keycloak:
       mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
     - name: realms
       mountPath: "/realms"
-    - name: realm-secrets
-      mountPath: "/secrets"
   initContainers:
     - name: import
       image: ghcr.io/catenax-ng/product-portal-iam_iam-import:generic
@@ -67,7 +65,6 @@ keycloak:
         verbs:
           - get
           - list
-
   postgresql:
     enabled: true
     auth:

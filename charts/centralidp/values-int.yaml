@@ -1,40 +1,9 @@
 keycloak:
-  image:
-    tag: 16.1.1-debian-10-r103
-  auth:
-    adminUser: admin
-    existingSecret: centralidp-keycloak
-  proxyAddressForwarding: true
-  serviceDiscovery:
-    enabled: true
-  extraEnvVars:
-    - name: KEYCLOAK_USER
-      value: "admin"
-    - name: KEYCLOAK_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: centralidp-keycloak
-          key: admin-password
-    - name: CACHE_OWNERS_COUNT
-      value: "3"
-    - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
-      value: "3"
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
-  replicaCount: 3
   extraVolumes:
-    - name: themes
-      emptyDir: {}
-    - name: realms
-      emptyDir: {}
     - name: realm-secrets
       secret:
         secretName: secret-centralidp-realms
   extraVolumeMounts:
-    - name: themes
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
-    - name: realms
-      mountPath: "/realms"
     - name: realm-secrets
       mountPath: "/secrets"
   initContainers:
@@ -59,9 +28,6 @@ keycloak:
         mountPath: "/realms"
       - name: realm-secrets
         mountPath: "/secrets"
-  service:
-    type: ClusterIP
-    sessionAffinity: ClientIP
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -77,23 +43,6 @@ keycloak:
       nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
       nginx.ingress.kubernetes.io/use-regex: "true"
     tls: true
-  rbac:
-    create: true
-    rules:
-      - apiGroups:
-          - ""
-        resources:
-          - pods
-        verbs:
-          - get
-          - list
-  postgresql:
-    enabled: true
-    auth:
-      username: kccentral
-      database: iamcentralidp
-      existingSecret: centralidp-postgres
-    architecture: replication
 
 secrets:
   auth:
