@@ -1,9 +1,17 @@
 keycloak:
   extraVolumes:
+    - name: themes
+      emptyDir: {}
+    - name: realms
+      emptyDir: {}
     - name: realm-secrets
       secret:
         secretName: secret-centralidp-realms
   extraVolumeMounts:
+    - name: themes
+      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
+    - name: realms
+      mountPath: "/realms"
     - name: realm-secrets
       mountPath: "/secrets"
   initContainers:
