@@ -1340,6 +1340,26 @@
         }
       },
       {
+        "id": "ad87f2c9-1594-40f0-a002-dd377944aa18",
+        "name": "Consent Required",
+        "providerId": "consent-required",
+        "subType": "anonymous",
+        "subComponents": {},
+        "config": {}
+      },
+      {
+        "id": "8e02447a-1bb8-4535-83c3-27207977a40a",
+        "name": "Allowed Client Scopes",
+        "providerId": "allowed-client-templates",
+        "subType": "authenticated",
+        "subComponents": {},
+        "config": {
+          "allow-default-scopes": [
+            "true"
+          ]
+        }
+      },
+      {
         "id": "83f469d5-639e-4ab1-88ce-7c3d5bf1ca2c",
         "name": "Trusted Hosts",
         "providerId": "trusted-hosts",
@@ -1353,14 +1373,6 @@
             "true"
           ]
         }
-      },
-      {
-        "id": "ad87f2c9-1594-40f0-a002-dd377944aa18",
-        "name": "Consent Required",
-        "providerId": "consent-required",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {}
       },
       {
         "id": "64f5ed3a-2407-442d-a1d2-85b79151ee47",
@@ -1406,22 +1418,18 @@
         }
       },
       {
-        "id": "8e02447a-1bb8-4535-83c3-27207977a40a",
-        "name": "Allowed Client Scopes",
-        "providerId": "allowed-client-templates",
-        "subType": "authenticated",
-        "subComponents": {},
-        "config": {
-          "allow-default-scopes": [
-            "true"
-          ]
-        }
-      },
-      {
         "id": "af857f90-12b5-4efb-9b3f-ecb18205befa",
         "name": "Full Scope Disabled",
         "providerId": "scope",
         "subType": "anonymous",
+        "subComponents": {},
+        "config": {}
+      }
+    ],
+    "org.keycloak.userprofile.UserProfileProvider": [
+      {
+        "id": "0fbc8bc0-1177-41ad-b774-abf2c34647bf",
+        "providerId": "declarative-user-profile",
         "subComponents": {},
         "config": {}
       }
