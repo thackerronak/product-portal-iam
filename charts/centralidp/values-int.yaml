@@ -39,7 +39,7 @@ keycloak:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: centralidpnew.int.demo.catena-x.net
+    hostname: centralidp.int.demo.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
