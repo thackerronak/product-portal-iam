@@ -245,8 +245,8 @@
           "composites": {
             "client": {
               "realm-management": [
-                "view-events",
                 "manage-events",
+                "view-events",
                 "query-realms",
                 "query-users",
                 "impersonation",
@@ -257,10 +257,10 @@
                 "view-users",
                 "manage-users",
                 "create-client",
-                "view-authorization",
                 "query-clients",
-                "view-identity-providers",
+                "view-authorization",
                 "manage-realm",
+                "view-identity-providers",
                 "manage-authorization",
                 "query-groups"
               ]
@@ -874,6 +874,7 @@
           "consentRequired": false,
           "config": {
             "multivalued": "true",
+            "userinfo.token.claim": "true",
             "user.attribute": "foo",
             "id.token.claim": "true",
             "access.token.claim": "true",
@@ -1298,7 +1299,16 @@
     "xXSSProtection": "1; mode=block",
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
-  "smtpServer": {},
+  "smtpServer": {
+    "password": "**********",
+    "starttls": "true",
+    "auth": "true",
+    "host": "smtp.office365.com",
+    "replyTo": "no-reply@catena-x.net",
+    "from": "Notifications@catena-x.net",
+    "ssl": "",
+    "user": "Notifications@catena-x.net"
+  },
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"
@@ -1319,6 +1329,18 @@
         "config": {}
       },
       {
+        "id": "f1fd43ff-3c5f-4411-bc6a-2c817478b81e",
+        "name": "Allowed Client Scopes",
+        "providerId": "allowed-client-templates",
+        "subType": "authenticated",
+        "subComponents": {},
+        "config": {
+          "allow-default-scopes": [
+            "true"
+          ]
+        }
+      },
+      {
         "id": "94f19adc-1bfc-4e09-980e-f2f299f20700",
         "name": "Full Scope Disabled",
         "providerId": "scope",
@@ -1335,18 +1357,6 @@
         "config": {
           "max-clients": [
             "200"
-          ]
-        }
-      },
-      {
-        "id": "f1fd43ff-3c5f-4411-bc6a-2c817478b81e",
-        "name": "Allowed Client Scopes",
-        "providerId": "allowed-client-templates",
-        "subType": "authenticated",
-        "subComponents": {},
-        "config": {
-          "allow-default-scopes": [
-            "true"
           ]
         }
       },
@@ -1373,14 +1383,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "saml-user-attribute-mapper",
-            "oidc-usermodel-property-mapper",
             "oidc-usermodel-attribute-mapper",
-            "saml-user-property-mapper",
+            "oidc-usermodel-property-mapper",
             "oidc-full-name-mapper",
+            "saml-user-property-mapper",
+            "saml-role-list-mapper",
+            "saml-user-attribute-mapper",
             "oidc-address-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
-            "saml-role-list-mapper"
+            "oidc-sha256-pairwise-sub-mapper"
           ]
         }
       },
@@ -1392,14 +1402,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "saml-role-list-mapper",
-            "oidc-usermodel-attribute-mapper",
+            "saml-user-attribute-mapper",
             "oidc-full-name-mapper",
             "saml-user-property-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
             "oidc-address-mapper",
-            "saml-user-attribute-mapper",
-            "oidc-usermodel-property-mapper",
-            "oidc-sha256-pairwise-sub-mapper"
+            "oidc-usermodel-attribute-mapper",
+            "saml-role-list-mapper",
+            "oidc-usermodel-property-mapper"
           ]
         }
       },
@@ -1416,15 +1426,18 @@
         }
       }
     ],
-    "org.keycloak.userprofile.UserProfileProvider": [
-      {
-        "id": "821d7bea-f704-4d9f-947c-447541e3a5b5",
-        "providerId": "declarative-user-profile",
-        "subComponents": {},
-        "config": {}
-      }
-    ],
     "org.keycloak.keys.KeyProvider": [
+      {
+        "id": "20151b2f-6a3b-49d7-b694-e027fa304b0b",
+        "name": "rsa-generated",
+        "providerId": "rsa-generated",
+        "subComponents": {},
+        "config": {
+          "priority": [
+            "100"
+          ]
+        }
+      },
       {
         "id": "a3e8d25a-db91-44d0-bdc7-03dccf1f4a67",
         "name": "rsa-enc-generated",
@@ -1436,28 +1449,6 @@
           ],
           "algorithm": [
             "RSA-OAEP"
-          ]
-        }
-      },
-      {
-        "id": "5e77c53b-ea13-4dc4-ae28-a95ab15edc6c",
-        "name": "aes-generated",
-        "providerId": "aes-generated",
-        "subComponents": {},
-        "config": {
-          "priority": [
-            "100"
-          ]
-        }
-      },
-      {
-        "id": "20151b2f-6a3b-49d7-b694-e027fa304b0b",
-        "name": "rsa-generated",
-        "providerId": "rsa-generated",
-        "subComponents": {},
-        "config": {
-          "priority": [
-            "100"
           ]
         }
       },
@@ -1474,6 +1465,17 @@
             "HS256"
           ]
         }
+      },
+      {
+        "id": "5e77c53b-ea13-4dc4-ae28-a95ab15edc6c",
+        "name": "aes-generated",
+        "providerId": "aes-generated",
+        "subComponents": {},
+        "config": {
+          "priority": [
+            "100"
+          ]
+        }
       }
     ]
   },
@@ -1481,7 +1483,7 @@
   "supportedLocales": [],
   "authenticationFlows": [
     {
-      "id": "0fb04a18-0cef-4753-a17a-2d337c70d9c5",
+      "id": "5828f1ac-3c31-4cb3-a8e2-696d521c0258",
       "alias": "Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -1507,7 +1509,7 @@
       ]
     },
     {
-      "id": "e5068f81-df54-413e-b35e-f151416dba3a",
+      "id": "a4111005-5f64-4805-b3c6-bbba3596c779",
       "alias": "Authentication Options",
       "description": "Authentication options.",
       "providerId": "basic-flow",
@@ -1541,7 +1543,7 @@
       ]
     },
     {
-      "id": "e31f3b7a-07f6-4bf9-ba87-8869239f7419",
+      "id": "eafad29d-03a4-4ae8-9f6d-2bf12278cd81",
       "alias": "Browser - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1567,7 +1569,7 @@
       ]
     },
     {
-      "id": "75ea930e-bd40-407c-ae43-41a35eaa79e8",
+      "id": "0a0e207b-80bb-4df4-a42f-a8430b5f66fd",
       "alias": "Direct Grant - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1593,7 +1595,7 @@
       ]
     },
     {
-      "id": "c5174ba9-2320-4e0e-8343-9a240bcfabe8",
+      "id": "6e0d588b-83e5-4f60-b749-72d817f6294b",
       "alias": "First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1619,7 +1621,7 @@
       ]
     },
     {
-      "id": "ca3c0fcc-b5a1-4363-bb0d-5fc402dc1fdb",
+      "id": "5a5f6ff7-ab96-4354-aa21-694af362f4da",
       "alias": "Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -1645,7 +1647,7 @@
       ]
     },
     {
-      "id": "56edf751-0978-4127-ae6c-fc6a48e937fc",
+      "id": "a3e12ac7-6ec2-4417-bcd9-bfed8ce00c11",
       "alias": "Reset - Conditional OTP",
       "description": "Flow to determine if the OTP should be reset or not. Set to REQUIRED to force.",
       "providerId": "basic-flow",
@@ -1671,7 +1673,7 @@
       ]
     },
     {
-      "id": "5247ead2-9a32-46b0-9c39-b9c5b842232a",
+      "id": "88fbc38a-189a-44fb-a943-281475ea98e6",
       "alias": "User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -1698,7 +1700,7 @@
       ]
     },
     {
-      "id": "6d6321a2-d0d0-43ad-bdc9-2135a75872de",
+      "id": "e2e379db-fbce-4a84-8e2f-ba203308bc8b",
       "alias": "Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -1724,7 +1726,7 @@
       ]
     },
     {
-      "id": "50e3c5ab-f69d-40b8-8cd4-6fce1121f9e3",
+      "id": "c5344d0b-13cf-452c-8aed-dcdf2cc133ec",
       "alias": "browser",
       "description": "browser based authentication",
       "providerId": "basic-flow",
@@ -1766,7 +1768,7 @@
       ]
     },
     {
-      "id": "78ea4b6c-eaab-4bb6-abd9-b73903428616",
+      "id": "c82f4fb3-3d18-48b9-83e9-bea269f98611",
       "alias": "clients",
       "description": "Base authentication for clients",
       "providerId": "client-flow",
@@ -1808,7 +1810,7 @@
       ]
     },
     {
-      "id": "2d55edd9-62b6-47e1-92a1-1152da96220f",
+      "id": "d9d078d8-b0d0-4bbf-9eee-2838fb9816a7",
       "alias": "direct grant",
       "description": "OpenID Connect Resource Owner Grant",
       "providerId": "basic-flow",
@@ -1842,7 +1844,7 @@
       ]
     },
     {
-      "id": "48869945-cfbe-43cf-9c52-0881a18bdff7",
+      "id": "5711abb7-7063-4b4c-8d64-87a781a21ae9",
       "alias": "docker auth",
       "description": "Used by Docker clients to authenticate against the IDP",
       "providerId": "basic-flow",
@@ -1860,7 +1862,7 @@
       ]
     },
     {
-      "id": "f9d2729e-761d-4c67-b951-43e7b151b156",
+      "id": "5e8160e0-da4f-464b-be67-7c7b766b26ad",
       "alias": "first broker login",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -1887,7 +1889,7 @@
       ]
     },
     {
-      "id": "55bb8e51-e364-474b-9582-c3159a1e82df",
+      "id": "0da65c47-fce5-4d36-b821-29b674e97a2c",
       "alias": "forms",
       "description": "Username, password, otp and other auth forms.",
       "providerId": "basic-flow",
@@ -1913,7 +1915,7 @@
       ]
     },
     {
-      "id": "f2d339d9-59a2-4280-bf78-95400ebb424e",
+      "id": "b590c0ae-4ad7-4f9c-8ac4-562eca79d7bf",
       "alias": "http challenge",
       "description": "An authentication flow based on challenge-response HTTP Authentication Schemes",
       "providerId": "basic-flow",
@@ -1939,7 +1941,7 @@
       ]
     },
     {
-      "id": "44803d39-4b8b-4cd9-a94a-3de60a7d4b79",
+      "id": "892d3644-cfa5-461b-a20e-62f8d811bcfb",
       "alias": "registration",
       "description": "registration flow",
       "providerId": "basic-flow",
@@ -1958,7 +1960,7 @@
       ]
     },
     {
-      "id": "209c2410-5e2d-4e7a-94df-6391eb1a54fa",
+      "id": "67211e5f-ce4e-490f-8e53-c2f24db55275",
       "alias": "registration form",
       "description": "registration form",
       "providerId": "form-flow",
@@ -2000,7 +2002,7 @@
       ]
     },
     {
-      "id": "91329d93-c6c6-4344-9387-cf8c0b32b477",
+      "id": "74716d18-3936-414b-8d06-ca44333e15ba",
       "alias": "reset credentials",
       "description": "Reset credentials for a user if they forgot their password or something",
       "providerId": "basic-flow",
@@ -2042,7 +2044,7 @@
       ]
     },
     {
-      "id": "3f7b458b-b428-4b0a-b26f-6c2344835c96",
+      "id": "014f2f45-fb57-4073-b466-df56bff05312",
       "alias": "saml ecp",
       "description": "SAML ECP Profile Authentication Flow",
       "providerId": "basic-flow",
@@ -2062,14 +2064,14 @@
   ],
   "authenticatorConfig": [
     {
-      "id": "42dc8674-06b7-4261-a985-b97aa1f80cc3",
+      "id": "2cc2c109-f079-4903-a58a-050663728447",
       "alias": "create unique user config",
       "config": {
         "require.password.update.after.registration": "false"
       }
     },
     {
-      "id": "a200ac90-a9fb-4ccb-a8d5-c128d572b0c4",
+      "id": "886e4a2d-fa5e-4907-ab5a-97c54e1d0039",
       "alias": "review profile config",
       "config": {
         "update.profile.on.first.login": "missing"
