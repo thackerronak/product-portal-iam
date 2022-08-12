@@ -335,8 +335,8 @@
         },
         {
           "id": "d9cdf5af-47c4-46c7-b4ab-dddd4b4a4aa0",
-          "name": "Data Specialist (INT only)",
-          "description": "Only a INT user with extended rights",
+          "name": "Data Specialist (BETA only)",
+          "description": "Only a BETA user with extended rights",
           "composite": true,
           "composites": {
             "client": {
@@ -1117,7 +1117,7 @@
       "sa-cl5-custodian-4": [],
       "sa-cl5-custodian-1": [],
       "sa-cl5-custodian-2": [],
-      "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com": [],
+      "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com": [],
       "sa-cl6-cx-18": [],
       "sa-cl6-cx-19": [],
       "urn:uuid:7bd86018-d0a2-421b-9e00-b77bab0838b1": [],
@@ -2828,7 +2828,7 @@
   "clientScopeMappings": {
     "https://catenax-dt-rec.authentication.eu10.hana.ondemand.com": [
       {
-        "client": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
+        "client": "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
         "roles": [
           "EC.Buyer.Manager",
           "EarthCommerce.Content.Manager",
@@ -3143,7 +3143,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://partners-gate.int.demo.catena-x.net/*"
+        "https://partners-gate.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -3205,9 +3205,9 @@
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
         "http://localhost:8080/*",
-        "https://dtc.int.adac.openresearch.com/*",
+        "https://dtc.beta.adac.openresearch.com/*",
         "https://dtc-translator.adac.openresearch.com/*",
-        "https://fleet.int.adac.openresearch.com/*",
+        "https://fleet.beta.adac.openresearch.com/*",
         "https://fleet-management.adac.openresearch.com/*"
       ],
       "webOrigins": [
@@ -3383,7 +3383,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://materialpass.int.demo.catena-x.net/*"
+        "https://materialpass.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -3468,7 +3468,7 @@
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
         "http://localhost:3000/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://portal.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -3573,7 +3573,7 @@
       "clientId": "Cl2-CX-Portal",
       "name": "",
       "description": "",
-      "rootUrl": "https://portal.int.demo.catena-x.net/home",
+      "rootUrl": "https://portal.beta.demo.catena-x.net/home",
       "adminUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
@@ -3581,10 +3581,10 @@
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
         "http://localhost:8080/*",
-        "https://partners-pool.int.demo.catena-x.net/*",
+        "https://partners-pool.beta.demo.catena-x.net/*",
         "http://localhost:3000/*",
-        "https://catenax-bpdm-int.demo.catena-x.net/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://catenax-bpdm-beta.demo.catena-x.net/*",
+        "https://portal.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -3672,7 +3672,7 @@
       "id": "36e2745d-f331-4fa5-bbfa-90947d7f1dc4",
       "clientId": "Cl3-CX-Semantic",
       "rootUrl": "",
-      "adminUrl": "https://portal.int.demo.catena-x.net/home",
+      "adminUrl": "https://portal.beta.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -3680,7 +3680,7 @@
       "redirectUris": [
         "http://localhost:8080/*",
         "http://localhost:3000/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://portal.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -3768,16 +3768,16 @@
       "id": "0dec1120-c21e-42ad-a779-94fc36217072",
       "clientId": "Cl4-CX-DigitalTwin",
       "rootUrl": "",
-      "adminUrl": "https://portal.int.demo.catena-x.net/home",
+      "adminUrl": "https://portal.beta.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
         "http://localhost:8080/*",
-        "https://semantics.int.demo.catena-x.net/*",
+        "https://semantics.beta.demo.catena-x.net/*",
         "http://localhost:3000/*",
-        "https://portal.int.demo.catena-x.net/*"
+        "https://portal.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -3864,14 +3864,14 @@
     {
       "id": "e6ab12bb-3b26-472c-ad0b-3d871bd1461b",
       "clientId": "Cl5-CX-Custodian",
-      "name": "Cl5-CX-Custodian INT",
+      "name": "Cl5-CX-Custodian BETA",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://managed-identity-wallets.int.demo.catena-x.net/*"
+        "https://managed-identity-wallets.beta.demo.catena-x.net/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -3973,8 +3973,8 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://partners-pool.int.demo.catena-x.net/*",
-        "https://catenax-bpdm-int.demo.catena-x.net/*"
+        "https://partners-pool.beta.demo.catena-x.net/*",
+        "https://catenax-bpdm-beta.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -4584,17 +4584,17 @@
     },
     {
       "id": "6a9209c2-ec16-476b-9a9f-61474610b790",
-      "clientId": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
+      "clientId": "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10"
+        "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-beta-dismantler-s66pftcc.aws-live-eu10"
       ],
       "webOrigins": [
-        "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com"
+        "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -4622,13 +4622,13 @@
         "require.pushed.authorization.requests": "false",
         "saml.assertion.signature": "true",
         "id.token.as.detached.signature": "false",
-        "saml_single_logout_service_url_post": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_single_logout_service_url_post": "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-beta-dismantler-s66pftcc.aws-live-eu10",
         "saml.encrypt": "false",
-        "saml_assertion_consumer_url_post": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_assertion_consumer_url_post": "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-beta-dismantler-s66pftcc.aws-live-eu10",
         "saml.server.signature": "true",
         "exclude.session.state.from.auth.response": "false",
         "saml.artifact.binding.identifier": "ZGMZhC4yxOKbOI3azIQQxCjXbLw=",
-        "saml_single_logout_service_url_redirect": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_single_logout_service_url_redirect": "https://catenax-beta-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-beta-dismantler-s66pftcc.aws-live-eu10",
         "saml.artifact.binding": "false",
         "saml_force_name_id_format": "false",
         "saml.encryption.certificate": "MIIDQjCCAiqgAwIBAgIGElXjqKNAMA0GCSqGSIb3DQEBCwUAMFgxVjBUBgNVBAMMTWh0dHBzOi8vY2F0ZW5heC1pbnQtZGlzbWFudGxlci1zNjZwZnRjYy5hdXRoZW50aWNhdGlvbi5ldTEwLmhhbmEub25kZW1hbmQuY29tMCAXDTE2MDEwMTAwMDAwMFoYDzIwNTAwMTAxMDAwMDAwWjBYMVYwVAYDVQQDDE1odHRwczovL2NhdGVuYXgtaW50LWRpc21hbnRsZXItczY2cGZ0Y2MuYXV0aGVudGljYXRpb24uZXUxMC5oYW5hLm9uZGVtYW5kLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKVD5SYVIsC3M8PqMuiw/IMypyZU0V5pUwxBaZlMWljz1D1iNPGaOg9LhhLGAWOD0cdfFs70Q4Ov391raGRn5/9cQma0dJtH1PiTMM67+FZFvn1FWeEJ5a3qwIgoQrcDZn9NDTmtL+yaYOAsg5SGEkjrOZlJp1U3xVZDmuToUZ96WDodsy/nVQTkvaORSh+XDPIQ3sH5jqFdFuQsWf3xXSFHobF1sbi2IjGSZxLEi9yszPVff999Q0Q86kAoCh5gVKdB3WSHgkzDD6gxlcIGGQM6y3HZigIKlPRwK1o3SrEvl0IbPKDNM6rtFgWwRfp5KsQLRfe7TxLq7IWkqQd29vcCAwEAAaMQMA4wDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQsFAAOCAQEAoScTGCrzKq4bbYFTJcyKwtgL80OM7RgZlfSsP/+k7fiZKUaY6WbUKDwRl7yHglgjL6NiC/Tz1PklgbB08RMwXIHbnG4VvdpcMUlHn5wGfZnNViHZYsjb4TgK8QS/zD8CSaJguUuK0ym/KUT9Hn6bHQuk4CQICVZmlp1N/bIWoSinY565rZ1amg9Ap0sgy1wWuqH8zKeTClrxjbuQeRTyj7d4kb/Ocg12rrUP8dznS5SGiR7WL9LpVrJZH72cKuOM1dYV6O94KH9uiuMe+VoUxWqgHiYbA/LOCxLSgI2fVTG8cGz0bCviFSf2tfVEB8mi/cU2Ikz6LzGNdaEpr4NoaA==",
@@ -10169,15 +10169,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access",
+        "jwksUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp.beta.demo.catena-x.net/auth/realms/CX-Test-Access",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
@@ -10196,15 +10196,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1",
+        "jwksUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-1",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
@@ -10223,15 +10223,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2",
+        "jwksUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-2",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
@@ -10250,15 +10250,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-3",
+        "jwksUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-3",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/auth",
         "clientAuthMethod": "client_secret_basic",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp.beta.demo.catena-x.net/auth/realms/Company-3/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientSecret": "**********"
       }
