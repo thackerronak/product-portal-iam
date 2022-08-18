@@ -10,34 +10,33 @@
                     <div class="signup-container__body">
                         <div>
                         <img class="user-icon" src="${url.resourcesPath}/images/user.svg" alt="" />
-                        <h4>Catena-X Account</h4>
-                        <#--  <h4>Create Your Catena-X Account</h4>  -->
-                        <#--  <p>
-                            To create your account and join the catena-X automotive network,
+                        <h4>Create Your Catena-X Account</h4>
+                        <p>
+                            To create your account and join the Catena-X automotive network,
                             please enter the password you received via text-message.
-                        </p>  -->
+                        </p>
                         </div>
                         <div>
-                        <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
-                            <#--  <div class="form-control">
+                        <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
+                            <div class="form-control">
                             <label>Company</label>
                             <input
                                 autocomplete="off"
                                 placeholder="Enter company name"
-                                id="companyName"
-                                name="name"
+                                id="firstName"
+                                name="firstName"
                                 type="text"
                                 autofocus
                                 required
                             />
-                            </div>  -->
+                            </div>
                             <div class="form-control">
                             <label>Email</label>
                             <input
                                 autocomplete="off"
                                 placeholder="Enter email"
-                                id="username"
-                                name="username"
+                                id="email"
+                                name="email"
                                 type="text"
                                 autofocus
                                 required
@@ -56,38 +55,35 @@
                                 required
                                 />
                                 <!-- <img src="${url.resourcesPath}/images/eyeShow.svg" alt="" /> -->
-                                <#--  <a onclick="myFunction()">  -->
-                                <#--  <img id="img" src="${url.resourcesPath}/images/eyeShow.svg" alt=""  -->
+                                <a onclick="myFunction()">
+                                <img id="img" src="${url.resourcesPath}/images/eyeShow.svg" alt=""
                                 /></a>
 
-                                <#--  <p class="note">
+                                <p class="note">
                                 Your password was sent to you via text message.
-                                </p>  -->
+                                </p>
                             </div>
                             </div>
                             <div class="form-control-button">
                             <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                            <button name="login" type="submit" id="kc-login">Login</button>
+                            <button name="login" type="submit" id="kc-login">Sign Up</button>
                             
                             </div>
                         </form>
                         </div>
-                        <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
+                        
                             <div class="gray-bg">
-                            <#--  <p>
-                                Already have an active membership?<a href="#">Log in</a>. More
-                                information in our <a href="#">help section</a>.
-                            </p>  -->
                             <p>
-                                Need an account? <a href="${url.registrationUrl}">Sign Up</a>
+                                Already have an active membership? <a href="${url.loginUrl}">Log in</a>. More
+                                information in our <a href="#">help section</a>.
                             </p>
                             </div>
-                        </#if>
+                        
                     </div>
-                <div>
-                </#if>   
                 </div>
-                </div> 
+                </#if>    
+            </div>
+        </div>
     </#if>
 
 </@layout.registrationLayout>
