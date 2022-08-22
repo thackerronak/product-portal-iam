@@ -10,27 +10,25 @@
                     <div class="signup-container__body">
                         <div>
                         <img class="user-icon" src="${url.resourcesPath}/images/user.svg" alt="" />
-                        <h4>Catena-X Account</h4>
-                        <#--  <h4>Create Your Catena-X Account</h4>  -->
-                        <#--  <p>
-                            To create your account and join the catena-X automotive network,
-                            please enter the password you received via text-message.
-                        </p>  -->
+                        <h4>${msg("header")}</h4>
+                        <p>
+                            ${msg("sub-header")}
+                        </p>
                         </div>
                         <div>
                         <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
-                            <#--  <div class="form-control">
+                            <div class="form-control">
                             <label>Company</label>
                             <input
                                 autocomplete="off"
                                 placeholder="Enter company name"
-                                id="companyName"
-                                name="name"
+                                id="companyname"
+                                name="companyname"
                                 type="text"
-                                autofocus
-                                required
+                                value="${realm.name}"
+                                readonly
                             />
-                            </div>  -->
+                            </div>
                             <div class="form-control">
                             <label>Email</label>
                             <input
@@ -55,31 +53,23 @@
                                 autofocus
                                 required
                                 />
-                                <!-- <img src="${url.resourcesPath}/images/eyeShow.svg" alt="" /> -->
-                                <#--  <a onclick="myFunction()">  -->
-                                <#--  <img id="img" src="${url.resourcesPath}/images/eyeShow.svg" alt=""  -->
-                                /></a>
-
-                                <#--  <p class="note">
-                                Your password was sent to you via text message.
-                                </p>  -->
+                                <p class="note">
+                                ${msg("passwordSent")}
+                                </p>
                             </div>
                             </div>
                             <div class="form-control-button">
                             <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                            <button name="login" type="submit" id="kc-login">Login</button>
+                            <button name="login" type="submit" id="kc-login">${msg("signup")}</button>
                             
                             </div>
                         </form>
                         </div>
                         <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
                             <div class="gray-bg">
-                            <#--  <p>
-                                Already have an active membership?<a href="#">Log in</a>. More
-                                information in our <a href="#">help section</a>.
-                            </p>  -->
                             <p>
-                                Need an account? <a href="${url.registrationUrl}">Sign Up</a>
+                                ${msg("alreadyAccount")} <a href="${properties.loginUrl}">${msg("login")}</a>. 
+                                ${msg("moreInfo")} <a href="${properties.helpUrl}">${msg("helpSection")}</a>.
                             </p>
                             </div>
                         </#if>
